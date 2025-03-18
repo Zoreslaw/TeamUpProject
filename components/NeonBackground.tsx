@@ -1,14 +1,15 @@
 import React from 'react';
-import { StyleSheet, View, ImageBackground } from 'react-native';
+import { StyleSheet, View, ImageBackground, StyleProp, ViewStyle } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 interface NeonBackgroundProps {
   children: React.ReactNode;
+  style?: StyleProp<ViewStyle>;
 }
 
-const NeonBackground = ({ children }: NeonBackgroundProps) => {
+const NeonBackground = ({ children, style }: NeonBackgroundProps) => {
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, style]}>
       <ImageBackground
         source={require('@/assets/images/44487-800.jpg')}
         style={styles.imageBackground}
@@ -23,6 +24,8 @@ const NeonBackground = ({ children }: NeonBackgroundProps) => {
           ]}
           style={styles.gradient}
         />
+        {children}
+
 
         {/* 
           IMPORTANT: Render children on top of the gradient.
@@ -30,9 +33,6 @@ const NeonBackground = ({ children }: NeonBackgroundProps) => {
           swap the order or tweak the zIndex, but usually you want
           the gradient behind your screen’s UI.
         */}
-        <View style={styles.contentContainer}>
-          {children}
-        </View>
       </ImageBackground>
     </View>
   );

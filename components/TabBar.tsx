@@ -1,47 +1,96 @@
 import React from 'react';
-import { View, StyleSheet, Pressable, Text } from 'react-native';
-
+import { View, StyleSheet, Pressable, Text, TouchableOpacity } from 'react-native';
+import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
+import { Divider } from '@/components/ui/Diveder';
+import { TabBarButton } from '@/components/button/TabBarButton';
+import HomeIcon from '@/components/svgs/HomeIcon';
+import ChatIcon from '@/components/svgs/ChatIcon';
+import ProfileIcon from '@/components/svgs/ProfileIcon';
 /**
  * A custom Tab Bar, approximating your gradient background + icons.
  */
-export function TabBar() {
+export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   return (
-    <View style={styles.tabBarContainer}>
-      {/* Tab 1 */}
-      <Pressable style={styles.tabItem}>
-        <Text style={styles.tabItemText}>Home</Text>
-      </Pressable>
-      {/* Tab 2 */}
-      <Pressable style={styles.tabItem}>
-        <Text style={styles.tabItemText}>Chat</Text>
-      </Pressable>
-      {/* Tab 3 */}
-      <Pressable style={styles.tabItem}>
-        <Text style={styles.tabItemText}>Profile</Text>
-      </Pressable>
+    <View style={styles.container}>
+      <Divider />
+      <View style={styles.tabBarContainer}>
+        {state.routes.map((route, index) => {
+          const { options } = descriptors[route.key];
+          const label = options.title ?? route.name;
+          const isActive = state.index === index;
+          let icon;
+
+          switch (route.name) {
+            case 'home':
+              icon = <HomeIcon />;
+              break;
+            case 'chat':
+              icon = <ChatIcon />;
+              break;
+            case 'profile':
+              icon = <ProfileIcon />;
+              break;
+            default:
+              icon = <HomeIcon />;
+              break;
+          }
+          
+          return (
+            <TabBarButton
+              key={route.key}
+              label={label}
+              tabName={route.name}
+              onPress={() => navigation.navigate(route.name)}
+              isActive={isActive}
+            />
+          );
+        })}
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  tabBarContainer: {
+  container: {
     position: 'absolute',
     bottom: 0,
     left: 0,
-    width: 412, // matches your design
-    height: 80,
+    width: '100%',
+  },
+  tabBarContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
+    paddingHorizontal: 15,
+    width: '100%',
+    height: 80,
     backgroundColor: 'rgba(0, 0, 0, 0.7)',
-    // approximate your gradient
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   tabItem: {
-    flexDirection: 'column',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
+    height: 35,
+    borderRadius: 20,
+    backgroundColor: '#B8B8B8',
   },
   tabItemText: {
+    fontFamily: 'Open Sans Hebrew',
+    fontWeight: '700',
+    fontSize: 12,
+    lineHeight: 16,
+    color: '#000000',
+  },
+  activeTabText: {
     color: '#FFFFFF',
-    fontSize: 14,
   },
 });
