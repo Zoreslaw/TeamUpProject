@@ -40,10 +40,29 @@ export default {
     },
     plugins: [
       "expo-router",
+      "expo-document-picker",
       "expo-apple-authentication",
+      "react-native-video",
       "@react-native-firebase/app",
       "@react-native-firebase/auth",
+      "@react-native-firebase/crashlytics",
       "@react-native-google-signin/google-signin",
+      [
+        "expo-build-properties",
+        {
+          ios: {
+            useFrameworks: "static",
+          },
+        },
+      ],
+      "expo-localization",
+      [
+        "expo-image-picker",
+        {
+          photosPermission:
+            "The app accesses your photos to let you share them with us.",
+        },
+      ],
     ],
     extra: {
       eas: {
