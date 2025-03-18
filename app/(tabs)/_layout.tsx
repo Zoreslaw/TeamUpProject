@@ -17,17 +17,7 @@ export default function TabLayout() {
     <Tabs
       tabBar={(props) => <TabBar {...props} />}
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].primary,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
         header: ({ options }) => <TabHeader title={options?.title ?? ""} />,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
       }}>
 
       <Tabs.Screen
