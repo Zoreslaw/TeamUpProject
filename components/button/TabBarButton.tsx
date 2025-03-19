@@ -40,20 +40,18 @@ export const TabBarButton = ({ label, onPress, isActive, tabName }: TabBarButton
 
 const styles = StyleSheet.create({
   icon: {
-    width: 1000,
-    height: 1000,
+    width: 24,
+    height: 24,
   },
   button: {
-    maxWidth: "25%",
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    
-    height: "50%",
+    height: 40,
     borderRadius: 20,
-    paddingHorizontal: 40,
-    gap: 10,
+    paddingHorizontal: 16,
+    gap: 8,
   },
   activeButton: {
     backgroundColor: '#B8B8B8',
