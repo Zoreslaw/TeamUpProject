@@ -32,5 +32,18 @@
                 "description": "Users can switch languages by tapping on country flags."
             }
         }
+    },
+    "sign-in-page": {
+        "sign-in":"Sign In",
+        "gmail": "Continue with Gmail",
+        "apple": "Continue with Apple",
+        "email": "Continue with Email",
+        "submit": "Submit",
+        "welcome-words": "By continuing you agree TeamUp \n Terms of Service and Privacy Policy",
+        "email-sign-in-title": "Sign In with Email",
+        "password-label": "YOUR PASSWORD",
+        "forgot-password": "Forgot Password?",
+        "no-account": "Don't have an account?",
+        "sign-up": "Sign Up"
     }
 }

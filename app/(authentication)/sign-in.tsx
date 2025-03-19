@@ -1,5 +1,5 @@
-import React from "react";
-import { View, StyleSheet, Platform } from "react-native";
+import React, { useEffect } from "react";
+import { View, StyleSheet, Platform, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import { GmailButton } from "@/components/authentication/buttons/GmailButton";
@@ -13,7 +13,7 @@ import { useTranslation } from "react-i18next";
 
 export default function SignIn() {
   const router = useRouter();
-  const { signInWithGoogle, signInWithApple } = useAuth();
+  const { signInWithGoogle, signInWithApple, user } = useAuth();
 
   const backgroundColor = useThemeColor({}, "background");
 
@@ -23,24 +23,35 @@ export default function SignIn() {
 
   const onGoogleSignInPress = async () => {
     await signInWithGoogle();
-    router.replace("/home");
   };
 
   const onAppleSignInPress = async () => {
     await signInWithApple();
-    router.replace("/home");
   };
+
+  useEffect(() => {
+    if (user) {
+      router.replace("/home");
+    }
+  }, [user]);
 
   return (
     <SafeAreaView style={[styles.container, { backgroundColor }]}>
-      <AuthHeader title={t_signIn} />
       <View style={styles.content}>
-        <GmailButton onPress={onGoogleSignInPress} />
-        {Platform.OS === "ios" && <AppleButton onPress={onAppleSignInPress} />}
+        <AuthHeader />
+
+        <View style={styles.bottomContainer}>
+          <View style={styles.formContainer}>
+            <Text style={styles.formTitle}>{t_signIn}</Text>
+            <GmailButton onPress={onGoogleSignInPress} />
+            {Platform.OS === "ios" && <AppleButton onPress={onAppleSignInPress} />}
+          </View>
+
+          <AuthBottomText>
+            {t_welcomeWords}
+          </AuthBottomText>
+        </View>
       </View>
-      <AuthBottomText>
-        {t_welcomeWords}
-      </AuthBottomText>
     </SafeAreaView>
   );
 }
@@ -49,11 +60,25 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: "center",
-    paddingHorizontal: 16,
   },
   content: {
     flex: 1,
     marginTop: 32,
-    gap: 16,
+    gap: 200,
+    paddingHorizontal: 64,
+    // justifyContent: "space-between",
+  },
+  bottomContainer: {
+    flex: 1,
+    justifyContent: "space-between",
+  },
+  formContainer: {
+    gap: 32,
+  },
+  formTitle: {
+    fontSize: 37,
+    fontFamily: "Roboto_500Medium",
+    textAlign: "center",
+    width: "100%",
   },
 });

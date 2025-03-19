@@ -32,5 +32,18 @@
                 "description": "Użytkownicy mogą zmieniać język poprzez kliknięcie na flagi krajów."
             }
         }
-    }
+    },
+    "sign-in-page": {
+        "sign-in":"Zaloguj się",
+        "gmail": "Kontynuuj z Gmail",
+        "apple": "Kontynuuj z Apple",
+        "email": "Kontynuuj z Email",
+        "submit": "Zaloguj się",
+        "welcome-words": "Kontynuując, zgadzasz się z \n Regulaminem i Polityką Prywatności",
+        "email-sign-in-title": "Zaloguj się z Email",
+        "password-label": "Twoje HASŁO",
+        "forgot-password": "Zapomniałeś hasła?",
+        "no-account": "Nie masz konta?",
+        "sign-up": "Zarejestruj się"
+      }
 }
