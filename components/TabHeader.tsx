@@ -16,9 +16,12 @@ export default function TabHeader({ title }: TabHeaderProps) {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    marginTop: 50,
-    marginHorizontal: 24,
     height: 95,
+    backgroundColor: "black",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    paddingHorizontal: 24,
     // etc...
   },
   headerTitle: {
@@ -31,9 +34,7 @@ const styles = StyleSheet.create({
     textShadowRadius: 4,
   },
   headerButtons: {
-    position: 'absolute',
-    flexDirection: 'row',
-    right: 24,
-    top: 32,
+    width: 100,
+    height: 100,
   },
 });
