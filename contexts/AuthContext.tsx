@@ -1,8 +1,9 @@
 import React, { createContext, useState, useEffect, ReactNode } from "react";
 import auth, { FirebaseAuthTypes } from "@react-native-firebase/auth";
+import firestore from "@react-native-firebase/firestore";
 import storage from "@react-native-firebase/storage";
 import { useSegments } from "expo-router";
-import { GoogleSignin } from "@react-native-google-signin/google-signin";
+import { GoogleSignin, statusCodes } from "@react-native-google-signin/google-signin";
 import * as AppleAuthentication from "expo-apple-authentication";
 import { Alert, Platform } from "react-native";
 import Constants from "expo-constants";
@@ -50,7 +51,8 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 
 console.log("IS_DEV", __DEV__);
 GoogleSignin.configure({
-  webClientId: "557470981427-03c3mk56mknb028felssqmhu7rdmh8kl.apps.googleusercontent.com",
+  webClientId:
+    "557470981427-03c3mk56mknb028felssqmhu7rdmh8kl.apps.googleusercontent.com",
 });
 
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({
@@ -68,12 +70,32 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     `error: ${error}`,
   );
 
+  // Helper function to ensure a Firestore user document exists
+  const ensureUserDocument = async (firebaseUser: FirebaseAuthTypes.User) => {
+    try {
+      const userDocRef = firestore().collection("users").doc(firebaseUser.uid);
+      const docSnapshot = await userDocRef.get();
+      if (!docSnapshot.exists) {
+        await userDocRef.set({
+          email: firebaseUser.email,
+          displayName: firebaseUser.displayName || "Anonymous",
+          createdAt: firestore.FieldValue.serverTimestamp(),
+          // Add any other default fields here
+        });
+        console.log("Created Firestore user document for", firebaseUser.uid);
+      }
+    } catch (error) {
+      console.error("Error ensuring user document:", error);
+    }
+  };
+
   useEffect(() => {
-    const unsubscribe = auth().onAuthStateChanged((_user) => {
-      console.log(
-        "Firebase onAuthStateChanged",
-        `${JSON.stringify(_user, null, 2)}`,
-      );
+    const unsubscribe = auth().onAuthStateChanged(async (_user) => {
+      console.log("Firebase onAuthStateChanged", JSON.stringify(_user, null, 2));
+      if (_user) {
+        // Ensure Firestore has a document for this user
+        await ensureUserDocument(_user);
+      }
       if (JSON.stringify(user) !== JSON.stringify(_user)) {
         setUser(_user);
       }
@@ -127,6 +149,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         password,
       );
       await userCredential.user.updateProfile({ displayName: name });
+      // Ensure a Firestore document is created after sign-up
+      await ensureUserDocument(userCredential.user);
       console.log("User account created & signed in", {
         userId: userCredential.user.uid,
       });
@@ -140,11 +164,31 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     try {
       setError(null);
       console.log("sign out");
+      
+      // 1) Sign out from Firebase
       await auth().signOut();
-      console.log("User signed out", {
+      
+      // 2) Also sign out from Google
+      GoogleSignin.signOut().then(() => {
+        console.log("Google signed out");
+      }).catch((err: any) => {
+        console.error("Error signing out from Google", err);
+      });
+
+      // 3) Sign out from Apple
+      // await AppleAuthentication.signOutAsync({
+      //   user: user?.uid || "unknown_user",
+      // });
+  
+      console.log("User signed out from Firebase and Google", {
         userId: user?.uid || "unknown_user",
       });
+
       console.log("AnalyticsService.logSessionEnd", user?.uid || null);
+  
+      // Clear local user state
+      setUser(null);
+  
     } catch (err: any) {
       handleAuthError(err);
     }
@@ -161,7 +205,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       const idToken = userInfo.data?.idToken;
 
       if (!idToken) {
-        throw new Error("Failed to retrieve ID token");
+        console.warn("Failed to retrieve ID token");
+        return;
       }
 
       const googleCredential = auth.GoogleAuthProvider.credential(idToken);
@@ -211,7 +256,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       }
 
       console.log("Updating username to:", newUsername);
-
       await auth().currentUser?.updateProfile({ displayName: newUsername });
       const updatedUser = await auth().currentUser;
       setUser(updatedUser);
@@ -224,20 +268,13 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
   // Updated uploadAvatarToStorage to match your Firebase Storage rules
   const uploadAvatarToStorage = async (uri: string, uid: string) => {
     try {
-      // Remove 'file://' prefix if needed
       const cleanedUri =
         Platform.OS === "android" && uri.startsWith("file://")
           ? uri.replace("file://", "")
           : uri;
-
-      // Using the path that matches your rules: /users/{userId}/uploads/avatar
       const filename = `users/${uid}/uploads/avatar`;
       const reference = storage().ref(filename);
-
-      // Await the upload
       await reference.putFile(cleanedUri);
-
-      // Get and return the download URL
       const downloadURL = await reference.getDownloadURL();
       console.log("downloadURL", downloadURL);
       return downloadURL;
@@ -255,11 +292,9 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
       console.log("Updating user avatar...");
       const downloadURL = await uploadAvatarToStorage(uri, user.uid);
-
       await auth().currentUser?.updateProfile({ photoURL: downloadURL });
-      await auth().currentUser?.reload(); // Refresh
+      await auth().currentUser?.reload();
       const updatedUser = auth().currentUser;
-
       setUser(updatedUser);
       console.log("User avatar updated successfully", {
         userId: updatedUser?.uid,
@@ -267,7 +302,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     } catch (err: any) {
       console.error("Error updating avatar:", err);
       handleAuthError(err);
-      throw err; // Re-throw to handle in the UI
+      throw err;
     }
   };
 

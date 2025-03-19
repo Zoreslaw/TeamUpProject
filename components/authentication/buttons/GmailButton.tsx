@@ -28,7 +28,7 @@ export const GmailButton: React.FC<AuthButtonProps> = ({ onPress }) => {
       <Button
         text={t_gmail}
         onPress={onPress}
-        variant="primary"
+        variant="secondary"
         IconLeft={({ size, color, style }) => (
           <AntDesign name="google" size={size} color={color} style={style} />
         )}

@@ -8,10 +8,6 @@ import { BackButton } from "@/components/button/BackButton";
 
 interface AuthHeaderProps {
   /**
-   * The title to display below the logo
-   */
-  title: string;
-  /**
    * Optional style overrides for the container
    */
   containerStyle?: ViewStyle;
@@ -43,37 +39,17 @@ interface AuthHeaderProps {
  * @returns {React.ReactElement} The rendered AuthHeader component
  */
 export const AuthHeader: React.FC<AuthHeaderProps> = ({
-  title,
   containerStyle,
-  logoContainerStyle,
-  titleStyle,
-  logoColor,
   showLogo = true,
 }) => {
   const navigation = useNavigation();
 
-  const backgroundColor = useThemeColor({}, "background");
-  const headerTextColor = useThemeColor({}, "text");
-  const svgColor = logoColor || headerTextColor;
-
   const canGoBack = navigation.canGoBack();
 
   return (
-    <View style={[styles.container, { backgroundColor }, containerStyle]}>
-      <View style={[styles.topContainer, logoContainerStyle]}>
+    <View style={[styles.container, containerStyle]}>
         {canGoBack && <BackButton />}
         {showLogo && <TeamUpLogo />}
-      </View>
-      <Text
-        style={[
-          styles.headerTitle,
-          { color: headerTextColor },
-          titleStyle,
-          !showLogo && styles.headerTitleWithoutLogo,
-        ]}
-      >
-        {title}
-      </Text>
     </View>
   );
 };
@@ -82,32 +58,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: "center",
     width: "100%",
-  },
-  topContainer: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 48,
-    width: "100%",
-    height: 45,
-    position: "relative",
-    zIndex: 10,
-  },
-  iconButtonContainer: {
-    position: "absolute",
-    left: 0,
-    zIndex: 10,
-  },
-  headerTitle: {
-    marginTop: 49,
-    fontSize: 37,
-    fontFamily: "Roboto_500Medium",
-    textAlign: "center",
-    width: "100%",
-  },
-  headerTitleWithoutLogo: {
-    marginTop: -50,
-    paddingLeft: 20,
+    paddingTop: "25%",
   },
 });
 

@@ -8,7 +8,6 @@ interface TabBarButtonProps {
   label: string;
   onPress: () => void;
   isActive: boolean;
-  key: string;
   tabName: string;
 }
 
@@ -27,12 +26,11 @@ const getIcon = (tabName: string, isActive: boolean, style?: StyleProp<ViewStyle
   }
 };
 
-export const TabBarButton = ({ label, onPress, isActive, key, tabName }: TabBarButtonProps) => {
+export const TabBarButton = ({ label, onPress, isActive, tabName }: TabBarButtonProps) => {
   return (
     <TouchableOpacity 
         onPress={onPress} 
         style={[styles.button, isActive && styles.activeButton]}
-        // key={key}
     >
         {getIcon(tabName, isActive, styles.icon)}
         {isActive && <Text style={[styles.label, isActive && styles.activeLabel]}>{label}</Text>}
