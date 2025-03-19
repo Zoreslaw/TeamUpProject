@@ -77,9 +77,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       const docSnapshot = await userDocRef.get();
       if (!docSnapshot.exists) {
         await userDocRef.set({
+          id: firebaseUser.uid,
           email: firebaseUser.email,
           displayName: firebaseUser.displayName || "Anonymous",
           createdAt: firestore.FieldValue.serverTimestamp(),
+          photoURL: firebaseUser.photoURL || "",
           // Add any other default fields here
         });
         console.log("Created Firestore user document for", firebaseUser.uid);

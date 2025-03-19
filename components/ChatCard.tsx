@@ -25,7 +25,7 @@ export default function ChatCard({
 }: ChatCardProps) {
     const backgroundColor = useThemeColor({}, "background");
     const textColor = useThemeColor({}, "text");
-
+    const textColorSecondary = useThemeColor({}, "secondaryText");
     return (
         <TouchableOpacity style={styles.container} onPress={onPress}>
             {/* Avatar Section */}
@@ -45,8 +45,8 @@ export default function ChatCard({
             <View style={styles.dataContainer}>
                 {/* Name and Time */}
                 <View style={styles.nameContainer}>
-                    <Text style={styles.nameText} numberOfLines={1}>{name}</Text>
-                    <Text style={styles.timeText}>{lastMessageTime}</Text>
+                    <Text style={[styles.nameText, { color: textColor }]} numberOfLines={1}>{name}</Text>
+                    <Text style={[styles.timeText, { color: textColorSecondary }]}>{lastMessageTime}</Text>
                 </View>
 
                 {/* Message and Badge */}
