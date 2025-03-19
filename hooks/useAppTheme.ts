@@ -22,7 +22,8 @@ export default function useAppTheme() {
       try {
         console.info("Initializing theme");
         const savedTheme = await loadThemeFromStorage();
-        setTheme(savedTheme);
+        // setTheme(savedTheme);
+        setTheme(APP_THEMES.DARK);
         setThemeLoaded(true);
         console.info("Theme initialized", { theme: savedTheme });
       } catch (error) {

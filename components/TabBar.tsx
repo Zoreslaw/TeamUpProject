@@ -6,12 +6,15 @@ import { TabBarButton } from '@/components/button/TabBarButton';
 import HomeIcon from '@/components/svgs/HomeIcon';
 import ChatIcon from '@/components/svgs/ChatIcon';
 import ProfileIcon from '@/components/svgs/ProfileIcon';
+
+import { useThemeColor } from '@/hooks/useThemeColor';
 /**
  * A custom Tab Bar, approximating your gradient background + icons.
  */
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
+  const backgroundColor = useThemeColor({}, "background");
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor }]}>
       <Divider />
       <View style={styles.tabBarContainer}>
         {state.routes.map((route, index) => {
@@ -52,7 +55,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
+    // position: 'absolute',
     bottom: 0,
     left: 0,
     width: '100%',
