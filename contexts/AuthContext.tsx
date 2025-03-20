@@ -8,7 +8,7 @@ import * as AppleAuthentication from "expo-apple-authentication";
 import { Alert, Platform } from "react-native";
 import Constants from "expo-constants";
 import * as FileSystem from "expo-file-system";
-
+import database from "@react-native-firebase/database";
 type AuthContextType = {
   user: FirebaseAuthTypes.User | null;
   userId: string | null;
@@ -77,10 +77,11 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
       const docSnapshot = await userDocRef.get();
       if (!docSnapshot.exists) {
         await userDocRef.set({
+          id: firebaseUser.uid,
           email: firebaseUser.email,
           displayName: firebaseUser.displayName || "Anonymous",
           createdAt: firestore.FieldValue.serverTimestamp(),
-          // Add any other default fields here
+          photoURL: firebaseUser.photoURL || "",
         });
         console.log("Created Firestore user document for", firebaseUser.uid);
       }
@@ -93,7 +94,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
     const unsubscribe = auth().onAuthStateChanged(async (_user) => {
       console.log("Firebase onAuthStateChanged", JSON.stringify(_user, null, 2));
       if (_user) {
-        // Ensure Firestore has a document for this user
         await ensureUserDocument(_user);
       }
       if (JSON.stringify(user) !== JSON.stringify(_user)) {
@@ -110,6 +110,32 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    if (!user) return;
+    const uid = user.uid;
+    const connectionRef = database().ref('.info/connected');
+    const userStatusRef = database().ref(`/status/${uid}`);
+
+    const onConnected = connectionRef.on('value', snapshot => {
+      if (snapshot.val() !== true) {
+        console.log("Not connected; do nothing.");
+        return;
+      }
+
+      userStatusRef
+        .onDisconnect()
+        .remove()
+        .then(() => {
+          userStatusRef.set(true);
+          console.log("User is online");
+        });
+    });
+
+    return () => {
+      connectionRef.off('value', onConnected);
+    };
+  }, [user]);
 
   useEffect(() => {
     clearError();
@@ -149,7 +175,6 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({
         password,
       );
       await userCredential.user.updateProfile({ displayName: name });
-      // Ensure a Firestore document is created after sign-up
       await ensureUserDocument(userCredential.user);
       console.log("User account created & signed in", {
         userId: userCredential.user.uid,
