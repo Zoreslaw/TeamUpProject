@@ -9,7 +9,6 @@ import ChatCardPlaceholder from '@/components/ChatCardPlaceholder';
 import { useRouter } from 'expo-router';
 import { useUserPresence } from '@/hooks/useUserPresence';
 import { createOrGetConversation } from '@/utils/createOrGetConversation';
-import { NeonButton } from '@/components/button/NeonButton';
 
 const ChatCardWithPresence = ({ item, onPress }: { item: any; onPress: () => void }) => {
   const isOnline = useUserPresence(item.otherUserId);
@@ -75,10 +74,9 @@ export default function Chat() {
   if (loading) {
     return (
       <View style={[styles.appContainer, { backgroundColor, paddingTop: 16 }]}>
-        <NeonButton label="Create Conversation" onPress={handleCreateConversation} />
         <SearchInput placeholder="Search" onChangeText={setSearchQuery} value={searchQuery} />
         <FlatList
-          data={[1, 2, 3, 4, 5]} // dummy data to generate placeholders
+          data={[1, 2, 3, 4, 5]}
           renderItem={() => <ChatCardPlaceholder />}
           keyExtractor={(item) => item.toString()}
           contentContainerStyle={styles.chatCardsContainer}
@@ -102,7 +100,6 @@ export default function Chat() {
   return (
     <View style={[styles.appContainer, { backgroundColor }]}>
       <View style={styles.chatsContainer}>
-      <NeonButton label="Create Conversation" onPress={handleCreateConversation} />
         <SearchInput placeholder="Search" onChangeText={setSearchQuery} value={searchQuery} />
         
         <FlatList
