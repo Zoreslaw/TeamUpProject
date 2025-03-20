@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, Pressable, Text, TouchableOpacity } from 'react-native';
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs';
-import { Divider } from '@/components/ui/Diveder';
+import { Divider } from '@/components/ui/Divider';
 import { TabBarButton } from '@/components/button/TabBarButton';
 import HomeIcon from '@/components/svgs/HomeIcon';
 import ChatIcon from '@/components/svgs/ChatIcon';
@@ -55,7 +55,6 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
 
 const styles = StyleSheet.create({
   container: {
-    // position: 'absolute',
     bottom: 0,
     left: 0,
     width: '100%',

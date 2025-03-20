@@ -8,7 +8,7 @@ import TabBarBackground from '@/components/ui/TabBarBackground';
 import { Colors } from '@/constants/Colors';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { TabBar } from '@/components/TabBar';
-import { Divider } from '@/components/ui/Diveder';
+import { Divider } from '@/components/ui/Divider';
 import TabHeader from '@/components/TabHeader';
 export default function TabLayout() {
   const colorScheme = useColorScheme();
