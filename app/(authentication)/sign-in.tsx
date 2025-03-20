@@ -16,6 +16,7 @@ export default function SignIn() {
   const { signInWithGoogle, signInWithApple, user } = useAuth();
 
   const backgroundColor = useThemeColor({}, "background");
+  const textColor = useThemeColor({}, "text");
 
   const { t } = useTranslation();
   const t_signIn = t("sign-in-page.sign-in");
@@ -42,7 +43,7 @@ export default function SignIn() {
 
         <View style={styles.bottomContainer}>
           <View style={styles.formContainer}>
-            <Text style={styles.formTitle}>{t_signIn}</Text>
+            <Text style={[styles.formTitle, { color: textColor }]}>{t_signIn}</Text>
             <GmailButton onPress={onGoogleSignInPress} />
             {Platform.OS === "ios" && <AppleButton onPress={onAppleSignInPress} />}
           </View>
