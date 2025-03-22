@@ -7,14 +7,18 @@ import NeonBackground from '@/components/NeonBackground';
 import HomeTabHeader from '@/components/HomeTabHeader';
 import { useAuth } from '@/hooks/useAuth';
 // import { HomeStatusBar } from '@/components/HomeStatusBar'; // if you want a custom status bar
-
+import { createRandomUser } from '@/utils/createRandomUser';
 export default function HomeScreen() {
   const { user, signOut } = useAuth();
   const router = useRouter();
 
-  const handleSignOut = async () => {
-    await signOut();
-    router.replace('/sign-in');
+  const handleFindTeammate = async () => {
+    // await signOut();
+    // router.replace('/sign-in');
+
+
+    router.push('/swipe');
+
   };
 
   return (
@@ -22,7 +26,7 @@ export default function HomeScreen() {
       <HomeTabHeader />
       <View style={styles.appContainer}>
         <View style={styles.homeContainer}>
-          <NeonButton label="Find Teammate" onPress={handleSignOut} />
+          <NeonButton label="Find Teammate" onPress={handleFindTeammate} />
         </View>
       </View>
     </NeonBackground>
