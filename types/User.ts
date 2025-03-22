@@ -5,11 +5,11 @@ export default interface User {
   photoURL: string;
   createdAt: Date;
 
-  favoriteCategory: string;
   languages: string[];
   age: number;
   gender: string;
   favoriteGames: string[];
+  otherGames: string[];
   preferenceCategories: string[];
   preferenceLanguages: string[];
   preferenceAgeRange: { min: number; max: number };

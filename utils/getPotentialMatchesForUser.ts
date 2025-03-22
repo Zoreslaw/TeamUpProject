@@ -49,6 +49,7 @@ export async function getPotentialMatchesForUser(userId: string, limitN: number)
   
     // 3) Filter out incompatible users
     const filteredCandidates = allUsers.filter((candidate) => {
+
       // Skip invalid candidates
       if (!candidate.preferenceAgeRange || !candidate.preferenceGender || !candidate.gender) {
         return false;
@@ -58,6 +59,9 @@ export async function getPotentialMatchesForUser(userId: string, limitN: number)
   
       // Check if currentUser has disliked them
       if (currentUser.disliked?.includes(candidate.id)) return false;
+      
+      // Check if currentUser has liked them
+      if (currentUser.liked?.includes(candidate.id)) return false;
   
       // Check if candidate disliked currentUser
       if (candidate.disliked?.includes(currentUser.id)) return false;
@@ -71,26 +75,12 @@ export async function getPotentialMatchesForUser(userId: string, limitN: number)
       }
   
       // Gender preference checks
-      if (currentUser.preferenceGender !== 'Any') {
-        if (currentUser.preferenceGender === 'Male' || currentUser.preferenceGender === 'Female') {
-          if (currentUser.preferenceGender !== candidate.gender) {
-            return false;
-          }
-        }
-        if (currentUser.preferenceGender === 'Other' && candidate.gender === currentUser.gender) {
-          return false;
-        }
+      if (currentUser.preferenceGender !== 'Any' && currentUser.preferenceGender !== candidate.gender) {
+        return false;
       }
 
-      if (candidate.preferenceGender !== 'Any') {
-        if (candidate.preferenceGender === 'Male' || candidate.preferenceGender === 'Female') {
-          if (candidate.preferenceGender !== currentUser.gender) {
-            return false;
-          }
-        }
-        if (candidate.preferenceGender === 'Other' && currentUser.gender === candidate.gender) {
-          return false;
-        }
+      if (candidate.preferenceGender !== 'Any' && candidate.preferenceGender !== currentUser.gender) {
+        return false;
       }
 
       return true;
@@ -119,27 +109,38 @@ export async function getPotentialMatchesForUser(userId: string, limitN: number)
   function computeMatchScore(me: User, candidate: User): number {
     let total = 0;
   
-    // 1) Category synergy
-    //    If my favoriteCategory is in candidate's preferenceCategories => +10
-    if (candidate.preferenceCategories.includes(me.favoriteCategory)) {
-      total += 10;
-    }
-    //    If candidate's favoriteCategory is in my preferenceCategories => +10
-    if (me.preferenceCategories.includes(candidate.favoriteCategory)) {
-      total += 10;
-    }
+    // 1) Category synergy: +10 for each shared category.
+    // Check if candidate's preference categories are in my favorite categories.
+    candidate.preferenceCategories.forEach(category => {
+      if (me.preferenceCategories.includes(category)) {
+        total += 10;
+      }
+    });
   
-    // 2) Language overlap
-    //    +5 for each shared language
-    const sharedLangs = me.languages.filter((lang) => candidate.languages.includes(lang));
-    total += (sharedLangs.length * 5);
+    // (Optional) You might also check the inverse:
+    // me.preferenceCategories.forEach(category => {
+    //   if (candidate.preferenceCategories.includes(category)) {
+    //     total += 10;
+    //   }
+    // });
   
-    // 3) Favorite games overlap
-    //    For each game in my favorites that candidate also has in favorites => +15
-    const commonFavGames = me.favoriteGames.filter((g) => candidate.favoriteGames.includes(g));
-    total += (commonFavGames.length * 15);
+    // 2) Language overlap: +5 for each shared language.
+    const sharedLangs = me.languages.filter(lang => candidate.languages.includes(lang));
+    total += sharedLangs.length * 5;
   
-    // 4) Age proximity => e.g. if difference <= 2 => +5, <=5 => +3
+    // 3) Favorite games overlap: +15 for each shared favorite game.
+    const commonFavGames = me.favoriteGames.filter(game => candidate.favoriteGames.includes(game));
+    total += commonFavGames.length * 15;
+  
+    // 4) Other games overlap: +10 for each shared other game.
+    const commonOtherGames = me.otherGames.filter(game => candidate.otherGames.includes(game));
+    total += commonOtherGames.length * 10;
+  
+    // 5) Other games in favorite games: +5 for each other game in my favorites.
+    const otherGamesInFavGames = candidate.otherGames.filter(game => me.favoriteGames.includes(game));
+    total += otherGamesInFavGames.length * 5;
+  
+    // 6) Age proximity: if age difference <=2 => +5, if <=5 => +3.
     const ageDiff = Math.abs(me.age - candidate.age);
     if (ageDiff <= 2) {
       total += 5;
@@ -147,14 +148,18 @@ export async function getPotentialMatchesForUser(userId: string, limitN: number)
       total += 3;
     }
   
-    // 5) If candidate has liked me => +20
+    // 7) Bonus if candidate has liked me: +20.
     if (candidate.liked?.includes(me.id)) {
       total += 20;
     }
   
-    // 6) (Optional) Time zone or schedule synergy => not implemented in this example
+    // (Optional) Additional factors you might add in the future:
+    // - Language preference matching (e.g., candidate.languages vs me.preferenceLanguages)
+    // - Age preference: check if candidate.age falls within me.preferenceAgeRange.
+    // - Description similarity: e.g., using NLP to score similarity between me.description and candidate.description.
+    // - Penalize if candidate is in your disliked list.
   
-    // 7) (Optional) Check "All user games" for partial synergy => not implemented
-    console.log('total', total, 'candidate', candidate.displayName, candidate.id);
+    console.log('Total match score:', total, 'for candidate', candidate.displayName, candidate.id);
     return total;
   }
+  
