@@ -68,7 +68,7 @@ export default function RootLayout() {
               <Stack.Screen name="+not-found" />
               <Stack.Screen name="chat" />
               <Stack.Screen name="sign-in" />
-              <Stack.Screen name="profile" />
+              <Stack.Screen name="profile" options={{ headerShown: false}} />
               <Stack.Screen name="(authentication)" />
             </Stack>
           </ThemeProvider>
