@@ -45,7 +45,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
               key={route.key}
               label={label}
               tabName={route.name}
-              onPress={() => navigation.navigate(route.name)}
+              onPress={() => navigation.navigate('(tabs)', { screen: route.name })}
               isActive={isActive}
               currentRoute={state.index === 0 ? 'home' : route.name}
             />
