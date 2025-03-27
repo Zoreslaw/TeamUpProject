@@ -13,12 +13,16 @@ import MatchOverlay from '@/components/Swipe/MatchOverlay';
 import { useThemeColor } from '@/hooks/useThemeColor';
 import { useRouter } from 'expo-router';
 
+import { useSwipeActions } from '@/hooks/useSwipeActions';
+
 export default function SwipeScreen() {
   const { user } = useAuth();
   const { cards, isLoading } = useGetMatch(user?.uid ?? '');
   const db = getFirestore();
   const backgroundColor = useThemeColor({}, 'background');
   const router = useRouter();
+
+  const { likeUser, dislikeUser } = useSwipeActions(user?.uid);
 
   const swiperRef = useRef<Swiper<any>>(null);
   const [allCardsFinished, setAllCardsFinished] = useState(false);
@@ -29,17 +33,18 @@ export default function SwipeScreen() {
   // Called when user swipes right
   const handleSwipedRight = async (cardIndex: number) => {
     if (!cards || !user) return;
-    const swipedUser = cards[cardIndex];
+    const swipedUser = cards[cardIndex]?.user;
+    const isMatch = swipedUser?.liked.includes(user.uid);
+    if (!swipedUser?.id) return;
 
     try {
       // Update current user's liked array
-      // await updateDoc(doc(db, 'users', user.uid), {
-      //   liked: arrayUnion(swipedUser.user.id)
-      // });
+      await likeUser({ id: swipedUser.id, isMatch: isMatch }, isMatch);
 
       // If isMatch = true, show match overlay
-      if (swipedUser.isMatch) {
-        setMatchedUser(swipedUser.user);
+      console.log('isMatch@', isMatch);
+      if (isMatch) {
+        setMatchedUser(swipedUser);
         setShowMatch(true);
       }
     } catch (error) {
@@ -50,13 +55,12 @@ export default function SwipeScreen() {
   // Called when user swipes left
   const handleSwipedLeft = async (cardIndex: number) => {
     if (!cards || !user) return;
-    const swipedUser = cards[cardIndex];
+    const swipedUser = cards[cardIndex]?.user;
+    if (!swipedUser?.id) return;
 
     try {
       // Update current user's disliked array
-      // await updateDoc(doc(db, 'users', user.uid), {
-      //   disliked: arrayUnion(swipedUser.user.id)
-      // });
+      await dislikeUser({ id: swipedUser.id });
     } catch (error) {
       console.error('Error updating dislike status:', error);
     }
