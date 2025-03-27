@@ -41,3 +41,6 @@ teamup-4f142-firebase-adminsdk-fbsvc-d29d7dba8a.json
 google-services.json
 
 android
+.env
+config/constants.ts
+config/openai.ts

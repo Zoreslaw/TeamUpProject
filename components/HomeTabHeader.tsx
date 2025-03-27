@@ -1,11 +1,17 @@
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
+import { Ionicons } from '@expo/vector-icons';
+import { useThemeColor } from "@/hooks/useThemeColor";
+import useAppTheme, { APP_THEMES } from "@/hooks/useAppTheme";
 
 type TabHeaderProps = {
   title?: string;
 }
 
 export default function HomeTabHeader({ title = "Home" }: TabHeaderProps) {
+  const secondaryTextColor = useThemeColor({}, 'secondaryText');
+  const { theme, setTheme } = useAppTheme();
+
   return (
     <LinearGradient
       colors={['#000000', 'rgba(34, 0, 14, 0.4)', 'rgba(0, 0, 0, 0.2)', 'rgba(255, 0, 102, 0)']}
@@ -13,12 +19,15 @@ export default function HomeTabHeader({ title = "Home" }: TabHeaderProps) {
       style={styles.headerContainer}>
       <Text style={styles.headerTitle}>{title}</Text>
       <View style={styles.headerButtons}>
-        <TouchableOpacity style={styles.iconButton}>
+        <TouchableOpacity style={[styles.iconButton, {borderColor: secondaryTextColor}]} onPress={() => {}}>
           {/* Notification Icon */}
+          <Ionicons name="notifications-outline" size={22} color={secondaryTextColor} />
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconButton}>
-          {/* Mode Icon */}
-        </TouchableOpacity>
+        <TouchableOpacity style={[styles.iconButton, {borderColor: secondaryTextColor}]} onPress={() => {
+            setTheme(theme === APP_THEMES.LIGHT ? APP_THEMES.DARK : APP_THEMES.LIGHT);
+          }}>
+            <Ionicons name="moon-outline" size={22} color={secondaryTextColor} />
+          </TouchableOpacity>
       </View>
     </LinearGradient>
   );
@@ -26,9 +35,13 @@ export default function HomeTabHeader({ title = "Home" }: TabHeaderProps) {
 
 const styles = StyleSheet.create({
   headerContainer: {
-    position: 'absolute',
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 18,
     width: '100%',
-    height: 95,
+    maxHeight: 95,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -39,9 +52,6 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   headerTitle: {
-    position: 'absolute',
-    left: 24,
-    top: 34,
     fontFamily: 'Roboto',
     fontStyle: 'normal',
     fontWeight: '600',
@@ -53,12 +63,9 @@ const styles = StyleSheet.create({
     textShadowRadius: 4,
   },
   headerButtons: {
-    position: 'absolute',
     flexDirection: 'row',
     alignItems: 'center',
     gap: 16,
-    right: 24,
-    top: 32,
     height: 42,
     shadowColor: "#FFF",
     shadowOffset: {
