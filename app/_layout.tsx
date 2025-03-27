@@ -62,15 +62,13 @@ export default function RootLayout() {
       <SafeAreaProvider>
         <AuthProvider>
           <ThemeProvider value={DefaultTheme}>
-            <Stack screenOptions={{ headerShown: false }}>
-              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-              <Stack.Screen name="home" options={{ headerShown: false }} />
-              <Stack.Screen name="+not-found" />
-              <Stack.Screen name="chat" />
-              <Stack.Screen name="sign-in" />
-              <Stack.Screen name="profile" options={{ headerShown: false}} />
-              <Stack.Screen name="(authentication)" />
-            </Stack>
+          <Stack screenOptions={{ headerShown: false }}>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="(authentication)" />
+            <Stack.Screen name="(swipe)" />
+            <Stack.Screen name="+not-found" />
+          </Stack>
+
           </ThemeProvider>
         </AuthProvider>
       </SafeAreaProvider>

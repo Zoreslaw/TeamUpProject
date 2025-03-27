@@ -14,6 +14,7 @@ export const Divider = ({ color }: DividerProps) => {
 const styles = StyleSheet.create({
   divider: {
     height: 1,
+    width: '100%',
   },
 });
 
