@@ -16,6 +16,8 @@ import ProfileAnimatedSubmenu from '@/components/ProfileAnimatedSubmenu';
 import ProfileEditInput from '@/components/ProfileEditInput';
 import ProfileEditArrayInput from '@/components/ProfileEditArrayInput';
 import ProfileEditSelector from '@/components/ProfileEditSelector';
+import ProfileEditMultiSelector from '@/components/ProfileEditMultiSelector';
+import languageMapEn, { reverseLanguageMapEn } from '@/localization/languageMaps';
 
 interface ModalData {
   title: string;
@@ -36,6 +38,7 @@ interface ModalData {
   string;
   content?: JSX.Element;
   isSelector?: boolean;
+  isSubmit?: boolean;
 }
 
 export default function Profile() {
@@ -46,7 +49,6 @@ export default function Profile() {
   const [isBioPressed, setIsBioPressed] = useState(false);
   const [isPreferencesPressed, setIsPreferencesPressed] = useState(false);
   const [isGamesPressed, setIsGamesPressed] = useState(false);
-  const [isContactPressed, setIsContactPressed] = useState(false);
   const [isSettingsPressed, setIsSettingsgPressed] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalData, setModalData] = useState<ModalData | null>(null);
@@ -59,7 +61,7 @@ export default function Profile() {
 
   const handlePhotoSource = async () => {
     setModalData({
-      title: "Gender",
+      title: "Profile Photo",
       content: (
         <ProfileEditSelector
           options={['Camera', 'Gallery', 'Cancel']}
@@ -68,6 +70,7 @@ export default function Profile() {
         />
       ),
       isSelector: true,
+      isSubmit: false,
     });
 
     setIsModalVisible(true);
@@ -160,10 +163,6 @@ export default function Profile() {
     setIsGamesPressed(!isGamesPressed);
   }
 
-  const handleContact = async () => {
-    setIsContactPressed(!isContactPressed);
-  }
-
   const handleSettings = async () => {
     setIsSettingsgPressed(!isSettingsPressed);
   }
@@ -188,29 +187,36 @@ export default function Profile() {
   }
 
   const handleLanguages = async () => {
+    const currentCodes = profile.languages ?? [];
+    const currentNames = currentCodes
+      .map(code => reverseLanguageMapEn[code])
+      .filter(Boolean);
+  
     setUpdateUserProfilePayload(prev => ({
       ...(prev ?? {}),
-      Languages: profile.languages ?? []
+      languages: currentNames,
     }));
-
-    setTimeout(() => {
-      setModalData({
-        title: "Languages",
-        key: "langEdit",
-        content: <ProfileEditArrayInput
-          arrayItems={profile.languages ?? []}
-          onArrayItemsChange={(newArray) => {
+  
+    setModalData({
+      title: "Languages",
+      key: "langEdit",
+      content: (
+        <ProfileEditMultiSelector
+          options={Object.keys(languageMapEn)}
+          selected={currentNames}
+          onChange={(newSelected) => {
             setUpdateUserProfilePayload(prev => ({
               ...(prev ?? {}),
-              Languages: newArray
+              languages: newSelected,
             }));
           }}
-          placeholder="Enter languages"
         />
-      });
-      setIsModalVisible(true);
-    }, 0);
-  }
+      ),
+      isSelector: true,
+    });
+  
+    setIsModalVisible(true);
+  };
 
   const handleAge = async () => {
     setModalData({
@@ -248,6 +254,7 @@ export default function Profile() {
         />
       ),
       isSelector: true,
+      isSubmit: false,
     });
 
     setIsModalVisible(true);
@@ -306,29 +313,36 @@ export default function Profile() {
   }
 
   const handlePreferredLanguages = async () => {
+    const currentCodes = profile.preferredLanguages ?? [];
+    const currentNames = currentCodes
+      .map(code => reverseLanguageMapEn[code])
+      .filter(Boolean);
+
     setUpdateUserProfilePayload(prev => ({
       ...(prev ?? {}),
-      preferenceLanguages: profile.preferredLanguages ?? []
+      preferenceLanguages: currentNames,
     }));
 
-    setTimeout(() => {
-      setModalData({
-        title: "Preferred Languages",
-        key: "prefLangEdit",
-        content: <ProfileEditArrayInput
-          arrayItems={profile.preferredLanguages ?? []}
-          onArrayItemsChange={(newArray) => {
+    setModalData({
+      title: "Preferred Languages",
+      key: "prefLangEdit",
+      content: (
+        <ProfileEditMultiSelector
+          options={Object.keys(languageMapEn)}
+          selected={currentNames}
+          onChange={(newSelected) => {
             setUpdateUserProfilePayload(prev => ({
               ...(prev ?? {}),
-              preferenceLanguages: newArray
+              preferenceLanguages: newSelected,
             }));
           }}
-          placeholder="Enter languages"
         />
-      });
-      setIsModalVisible(true);
-    }, 0);
-  }
+      ),
+      isSelector: true,
+    });
+
+    setIsModalVisible(true);
+  };
 
   const handlePreferredAgeRangeMin = async () => {
     setModalData({
@@ -395,6 +409,7 @@ export default function Profile() {
         />
       ),
       isSelector: true,
+      isSubmit: false,
     });
 
     setIsModalVisible(true);
@@ -492,20 +507,24 @@ export default function Profile() {
       }
 
       case 'langEdit': {
-        const newLanguages = updateUserProfilePayload?.languages ?? [];
+        const selectedLanguages = updateUserProfilePayload?.languages ?? [];
+        const newLanguages = selectedLanguages
+          .map(name => languageMapEn[name])
+          .filter(Boolean);
         const oldLanguages = profile.languages;
-
+      
         if (oldLanguages.length > 0 && newLanguages.length === 0) {
           await updateProfile({ languages: [] });
           break;
         }
-
+      
         if (JSON.stringify(oldLanguages) !== JSON.stringify(newLanguages)) {
           await updateProfile({ languages: newLanguages });
         }
-
+      
         break;
       }
+      
 
       case 'ageEdit': {
         const newAge = updateUserProfilePayload?.age ?? '';
@@ -556,7 +575,10 @@ export default function Profile() {
       }
 
       case 'prefLangEdit': {
-        const newPreferenceLanguages = updateUserProfilePayload?.preferenceLanguages ?? [];
+        const selectedLanguages = updateUserProfilePayload?.preferenceLanguages ?? [];
+        const newPreferenceLanguages = selectedLanguages
+          .map(name => languageMapEn[name])
+          .filter(Boolean);
         const oldPreferenceLanguages = profile.preferredLanguages;
 
         if (oldPreferenceLanguages.length > 0 && newPreferenceLanguages.length === 0) {
@@ -672,7 +694,7 @@ export default function Profile() {
 
           <ProfileAnimatedSubmenu isExpanded={isBioPressed}>
             <ProfileSubmenuItem title='Favorite Category' contents={[profile?.favoriteCategory]} onPress={handleFavoriteCategory} />
-            <ProfileSubmenuItem title='Languages' contents={profile?.languages} onPress={handleLanguages} />
+            <ProfileSubmenuItem title='Languages' contents={profile?.languages.map(code => reverseLanguageMapEn[code]).filter(Boolean)} onPress={handleLanguages} />
             <ProfileSubmenuItem title='Age' contents={[(profile.age ? profile.age.toString() : '')]} onPress={handleAge} />
             <ProfileSubmenuItem title='Gender' contents={[profile?.gender]} onPress={handleGender} />
             <ProfileSubmenuItem title='Description' contents={[profile?.description]} onPress={handleDescription} />
@@ -682,7 +704,7 @@ export default function Profile() {
 
           <ProfileAnimatedSubmenu isExpanded={isPreferencesPressed}>
             <ProfileSubmenuItem title='Categories' contents={profile.preferredCategories} onPress={handlePreferredCategories} />
-            <ProfileSubmenuItem title='Languages' contents={profile.preferredLanguages} onPress={handlePreferredLanguages} />
+            <ProfileSubmenuItem title='Languages' contents={profile.preferredLanguages.map(code => reverseLanguageMapEn[code]).filter(Boolean)} onPress={handlePreferredLanguages} />
             <ProfileSubmenuItem title='Min Age' contents={[
               (() => {
                 const min = profile.preferredAgeRange instanceof Map
@@ -710,8 +732,6 @@ export default function Profile() {
             <ProfileSubmenuItem title='Favorite Games' contents={profile.favoriteGames} onPress={handleFavoriteGames} />
             <ProfileSubmenuItem title='Other Games' contents={profile.otherGames} onPress={handleOtherGames} />
           </ProfileAnimatedSubmenu>
-
-          <ProfileMenuItem title="Contact" iconName="phone" isPressed={isContactPressed} onPress={handleContact} />
           <ProfileMenuItem title="Settings" iconName="settings" isPressed={isSettingsPressed} onPress={handleSettings} />
         </ScrollView>
         <View style={styles.buttonContainer}>

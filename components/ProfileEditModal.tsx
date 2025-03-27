@@ -10,6 +10,7 @@ interface ProfileEditModalProps {
   onSubmit: () => void;
   children: React.ReactNode;
   isSelector?: boolean;
+  isSubmit?: boolean;
 }
 
 const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
@@ -19,6 +20,7 @@ const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
   onSubmit,
   children,
   isSelector = false,
+  isSubmit = true,
 }) => {
   return (
     <Modal animationType='fade' transparent visible={isVisible} onRequestClose={closeModal} >
@@ -33,7 +35,7 @@ const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
               </View>
               <Divider />
               <View style={styles.modalSubmitButtonContainer}>
-                { !isSelector && <SubmitButton label='Submit' onPress={onSubmit} /> }
+                { isSubmit && <SubmitButton label='Submit' onPress={onSubmit} /> }
               </View>
             </View>
           </TouchableWithoutFeedback>
