@@ -13,10 +13,12 @@ import { useThemeColor } from '@/hooks/useThemeColor';
  */
 export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
   const backgroundColor = useThemeColor({}, "background");
+  const secondaryBackgroundColor = useThemeColor({}, "secondaryBackground");
+
   return (
-    <View style={[styles.container, { backgroundColor }]}>
-      <Divider />
-      <View style={styles.tabBarContainer}>
+    <View style={[styles.container]}>
+      <Divider color={state.index === 0 ? "#1e1e1e" : secondaryBackgroundColor} />
+      <View style={[styles.tabBarContainer, { backgroundColor: state.index === 0 ? "#121212" : backgroundColor }]}>
         {state.routes.map((route, index) => {
           const { options } = descriptors[route.key];
           const label = options.title ?? route.name;
@@ -45,6 +47,7 @@ export function TabBar({ state, descriptors, navigation }: BottomTabBarProps) {
               tabName={route.name}
               onPress={() => navigation.navigate(route.name)}
               isActive={isActive}
+              currentRoute={state.index === 0 ? 'home' : route.name}
             />
           );
         })}
@@ -66,7 +69,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     width: '100%',
     height: 80,
-    backgroundColor: 'rgba(0, 0, 0, 0.7)',
     shadowColor: '#000',
     shadowOffset: {
       width: 0,

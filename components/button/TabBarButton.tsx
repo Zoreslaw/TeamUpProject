@@ -3,36 +3,40 @@ import { SvgProps } from "react-native-svg";
 import HomeIcon from "../svgs/HomeIcon";
 import ChatIcon from "../svgs/ChatIcon";
 import ProfileIcon from "../svgs/ProfileIcon";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 interface TabBarButtonProps {
   label: string;
   onPress: () => void;
   isActive: boolean;
   tabName: string;
+  currentRoute: string;
 }
 
-const getIcon = (tabName: string, isActive: boolean, style?: StyleProp<ViewStyle>) => {
-    console.log(tabName, isActive);
+const getIcon = (tabName: string, isActive: boolean, currentRoute: string, style?: StyleProp<ViewStyle>) => {
+    const textColor = useThemeColor({}, "text");
+    const inactiveColor = isActive ? "#000000" : textColor;
+    console.log(currentRoute);
 
   switch (tabName) {
     case 'home':
-      return <HomeIcon fill={isActive ? "#000000" : "#B8B8B8" } style={style} />;
+      return <HomeIcon fill={inactiveColor} style={style} />;
     case 'chat':
-      return <ChatIcon stroke={isActive ? "#000000" : "#B8B8B8"} style={style} />;
+      return <ChatIcon stroke={currentRoute === 'home' ? '#B0B0B0' : inactiveColor} style={style} />;
     case 'profile':
-      return <ProfileIcon stroke={isActive ? "#000000" : "#B8B8B8"} style={style} />;
+      return <ProfileIcon stroke={currentRoute === 'home' ? '#B0B0B0' : inactiveColor} style={style} />;
     default:
-      return <HomeIcon fill={isActive ? "#000000" : "#B8B8B8"} style={style} />;
+      return <HomeIcon fill={inactiveColor} style={style} />;
   }
 };
 
-export const TabBarButton = ({ label, onPress, isActive, tabName }: TabBarButtonProps) => {
+export const TabBarButton = ({ label, onPress, isActive, tabName, currentRoute }: TabBarButtonProps) => {
   return (
     <TouchableOpacity 
         onPress={onPress} 
         style={[styles.button, isActive && styles.activeButton]}
     >
-        {getIcon(tabName, isActive, styles.icon)}
+        {getIcon(tabName, isActive, currentRoute, styles.icon)}
         {isActive && <Text style={[styles.label, isActive && styles.activeLabel]}>{label}</Text>}
     </TouchableOpacity>
   );
