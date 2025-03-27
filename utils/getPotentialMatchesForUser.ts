@@ -1,6 +1,7 @@
 import { getFirestore, collection, getDocs, doc } from '@react-native-firebase/firestore';
 // import { DocumentData } from 'firebase/firestore';
 import User from '@/types/User';
+import { getDescriptionSynergy } from './getDescriptionSynergy';
 
 interface ScoredMatch {
     user: User;  // The candidate user
@@ -91,14 +92,16 @@ export async function getPotentialMatchesForUser(userId: string, limitN: number)
     });
   
     // 4) Compute match scores
-    const scored: ScoredMatch[] = filteredCandidates.map((candidate) => {
-      const score = computeMatchScore(currentUser, candidate);
-      return { 
-        user: candidate, 
-        score,
-        isMatch: candidate.liked?.includes(currentUser.id) ?? false // Use nullish coalescing to ensure boolean
-      };
-    });
+    const scored: ScoredMatch[] = await Promise.all(
+      filteredCandidates.map(async (candidate) => {
+        const score = await computeMatchScore(currentUser, candidate);
+        return { 
+          user: candidate, 
+          score,
+          isMatch: candidate.liked?.includes(currentUser.id) ?? false
+        };
+      })
+    );
   
     // 5) Sort and return top matches
     scored.sort((a, b) => b.score - a.score);
@@ -114,7 +117,7 @@ export async function getPotentialMatchesForUser(userId: string, limitN: number)
    * - If candidate has liked me
    * - Possibly more
    */
-  function computeMatchScore(me: User, candidate: User): number {
+  async function computeMatchScore(me: User, candidate: User): Promise<number> {
     let total = 0;
   
     // 1) Category synergy: +10 for each shared category
@@ -163,6 +166,14 @@ export async function getPotentialMatchesForUser(userId: string, limitN: number)
     // 7) Bonus if candidate has liked me: +30
     if (candidate.liked?.includes(me.id)) {
       total += 30;
+    }
+
+    // 8) ChatGPT synergy
+    // If either is missing a description, synergy=0
+    if (me.description && candidate.description) {
+      const synergy = await getDescriptionSynergy(me.description, candidate.description);
+      console.log("synergy:", synergy)
+      total += synergy;
     }
   
     console.log('Total match score:', total, 'for candidate', candidate.displayName, candidate.id);

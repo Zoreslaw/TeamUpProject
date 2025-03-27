@@ -38,11 +38,8 @@ export default function SwipeScreen() {
     if (!swipedUser?.id) return;
 
     try {
-      // Update current user's liked array
       await likeUser({ id: swipedUser.id, isMatch: isMatch }, isMatch);
 
-      // If isMatch = true, show match overlay
-      console.log('isMatch@', isMatch);
       if (isMatch) {
         setMatchedUser(swipedUser);
         setShowMatch(true);
@@ -59,7 +56,6 @@ export default function SwipeScreen() {
     if (!swipedUser?.id) return;
 
     try {
-      // Update current user's disliked array
       await dislikeUser({ id: swipedUser.id });
     } catch (error) {
       console.error('Error updating dislike status:', error);
