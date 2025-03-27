@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import { Divider } from './ui/Divider';
 import { Feather, Ionicons } from '@expo/vector-icons';
 
+import { useThemeColor } from '@/hooks/useThemeColor';
+
 interface ProfileMenuItemProps {
   title: string;
   iconName: string;
@@ -16,12 +18,14 @@ const ProfileMenuItem: React.FC<ProfileMenuItemProps> = ({
   isPressed,
   onPress,
 }) => {
+  const backgroundColor = useThemeColor({}, 'background');
+
   return(
     <View>
       <Divider />
-      <TouchableOpacity onPress={onPress} style={styles.itemContainer}>
+      <TouchableOpacity onPress={onPress} style={[styles.itemContainer, { backgroundColor }]}>
         <View style={styles.leftSection}>
-          {iconName === "game-controller-outline" ? <Ionicons name={iconName} size={24} color="#757575" style={styles.itemIcon} /> : <Feather name={iconName} size={24} color="#757575" style={styles.itemIcon} />}
+          {iconName === "game-controller-outline" ? <Ionicons name={iconName as any} size={24} color="#757575" style={styles.itemIcon} /> : <Feather name={iconName as any} size={24} color="#757575" style={styles.itemIcon} />}
           <Text style={styles.itemText}>{title}</Text>
         </View>
         <Feather name={ isPressed ? "chevron-up" : "chevron-down" } size={20} color="#757575" />
@@ -38,7 +42,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 16,
     paddingVertical: 12,
-    backgroundColor: '#000000',
     justifyContent: 'space-between',
   },
   leftSection: {

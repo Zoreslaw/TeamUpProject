@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   selectedText: {
-    //color: '#757575',
     fontWeight: 'bold',
   },
 });

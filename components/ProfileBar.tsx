@@ -4,6 +4,8 @@ import DefaultAvatarIcon from './svgs/DefaultAvatarIcon';
 import { Divider } from '@/components/ui/Divider';
 import { Feather } from '@expo/vector-icons';
 
+import { useThemeColor } from '@/hooks/useThemeColor';
+
 interface ProfileBarProps {
   avatarUrl: string;
   name: string;
@@ -18,10 +20,12 @@ const ProfileBar: React.FC<ProfileBarProps> = ({
   email,
   onAvatarPress,
   onEditPress,
-}) => {
+  }) => {
+  const backgroundColor = useThemeColor({}, 'background');
+
   return (
     <View>
-      <View style={styles.profileBarContainer}>
+      <View style={[styles.profileBarContainer, { backgroundColor }]}>
         <TouchableOpacity onPress={onAvatarPress} style={styles.avatarContainer}>
           {avatarUrl ? (
             <Image source={{ uri: avatarUrl }} style={styles.avatarImage} />
@@ -52,7 +56,6 @@ const styles = StyleSheet.create({
     height: 85,
     paddingHorizontal: 16,
     paddingVertical: 12,
-    backgroundColor: '#000000',
   },
   avatarContainer: {
     width: 60,

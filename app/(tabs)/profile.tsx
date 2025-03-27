@@ -687,7 +687,6 @@ export default function Profile() {
 
   return (
     <View style={[styles.appContainer, { backgroundColor }]}>
-      <ProfileHeader title='Profile' />
       <View style={styles.profileContainer}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <ProfileBar avatarUrl={profile?.avatarUrl} name={profile?.userName} email={user?.email} onAvatarPress={handlePhotoSource} onEditPress={handleNameEdit} />

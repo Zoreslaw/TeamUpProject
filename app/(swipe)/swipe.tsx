@@ -114,7 +114,7 @@ export default function SwipeScreen() {
           </Text>
           <TouchableOpacity
             style={styles.goHomeButton}
-            onPress={() => router.replace('/')}
+            onPress={() => router.back()}
           >
             <Text style={styles.goHomeButtonText}>Go Home</Text>
           </TouchableOpacity>
