@@ -76,7 +76,7 @@ export default function Chat() {
       <View style={[styles.appContainer, { backgroundColor, paddingTop: 16 }]}>
         <SearchInput placeholder="Search" onChangeText={setSearchQuery} value={searchQuery} />
         <FlatList
-          data={[1, 2, 3, 4, 5]}
+          data={[1, 2, 3, 4, 5]} // dummy data to generate placeholders
           renderItem={() => <ChatCardPlaceholder />}
           keyExtractor={(item) => item.toString()}
           contentContainerStyle={styles.chatCardsContainer}
