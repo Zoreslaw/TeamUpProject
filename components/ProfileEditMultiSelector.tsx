@@ -79,10 +79,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#757575',
   },
   optionText: {
-    paddingTop: 2,
     fontFamily: 'Roboto',
     fontSize: 18,
     height: 30,
+    marginVertical: 4,
   },
   selectedText: {
     color: '#FFF',

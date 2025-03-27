@@ -686,7 +686,6 @@ export default function Profile() {
 
   return (
     <View style={[styles.appContainer, { backgroundColor }]}>
-      <ProfileHeader title='Profile' />
       <View style={styles.profileContainer}>
         <ScrollView contentContainerStyle={styles.scrollContainer}>
           <ProfileBar avatarUrl={profile?.avatarUrl} name={profile?.userName} email={user?.email} onAvatarPress={handlePhotoSource} onEditPress={handleNameEdit} />
@@ -738,7 +737,7 @@ export default function Profile() {
           <SignOutButton label="Sign Out" onPress={handleSignOut} style={styles.signOutButton} />
         </View>
       </View>
-      <ProfileEditModal title={modalData?.title} isVisible={isModalVisible} closeModal={handleCloseModal} onSubmit={handleSubmit} isSelector={modalData?.isSelector}>
+      <ProfileEditModal title={modalData?.title} isVisible={isModalVisible} closeModal={handleCloseModal} onSubmit={handleSubmit} isSelector={modalData?.isSelector} isSubmit={modalData?.isSubmit}>
         {modalData?.content}
       </ProfileEditModal>
     </View>
