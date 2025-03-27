@@ -7,13 +7,13 @@ export default interface User {
 
   languages: string[];
   age: number;
-  gender: string;
+  gender: "Male" | "Female" | "Other";
   favoriteGames: string[];
   otherGames: string[];
   preferenceCategories: string[];
   preferenceLanguages: string[];
   preferenceAgeRange: { min: number; max: number };
-  preferenceGender: string;
+  preferenceGender: "Male" | "Female" | "Other" | "Any";
   description?: string;
   liked?: string[];
   disliked?: string[];

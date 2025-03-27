@@ -5,6 +5,7 @@ import User from '@/types/User';
 interface ScoredMatch {
     user: User;  // The candidate user
     score: number;      // The final match score
+    isMatch: boolean;   // Whether the candidate has liked the current user
 }
 
 /**
@@ -46,10 +47,13 @@ export async function getPotentialMatchesForUser(userId: string, limitN: number)
       }
       return userData;
     });
+
+    // Pre-calculate liked status for better performance
+    const likedByCurrentUser = new Set(currentUser.liked || []);
+    const dislikedByCurrentUser = new Set(currentUser.disliked || []);
   
     // 3) Filter out incompatible users
     const filteredCandidates = allUsers.filter((candidate) => {
-
       // Skip invalid candidates
       if (!candidate.preferenceAgeRange || !candidate.preferenceGender || !candidate.gender) {
         return false;
@@ -58,10 +62,10 @@ export async function getPotentialMatchesForUser(userId: string, limitN: number)
       if (candidate.id === currentUser.id) return false;
   
       // Check if currentUser has disliked them
-      if (currentUser.disliked?.includes(candidate.id)) return false;
+      if (dislikedByCurrentUser.has(candidate.id)) return false;
       
       // Check if currentUser has liked them
-      if (currentUser.liked?.includes(candidate.id)) return false;
+      if (likedByCurrentUser.has(candidate.id)) return false;
   
       // Check if candidate disliked currentUser
       if (candidate.disliked?.includes(currentUser.id)) return false;
@@ -89,7 +93,11 @@ export async function getPotentialMatchesForUser(userId: string, limitN: number)
     // 4) Compute match scores
     const scored: ScoredMatch[] = filteredCandidates.map((candidate) => {
       const score = computeMatchScore(currentUser, candidate);
-      return { user: candidate, score };
+      return { 
+        user: candidate, 
+        score,
+        isMatch: candidate.liked?.includes(currentUser.id) ?? false // Use nullish coalescing to ensure boolean
+      };
     });
   
     // 5) Sort and return top matches
@@ -109,55 +117,53 @@ export async function getPotentialMatchesForUser(userId: string, limitN: number)
   function computeMatchScore(me: User, candidate: User): number {
     let total = 0;
   
-    // 1) Category synergy: +10 for each shared category.
-    // Check if candidate's preference categories are in my favorite categories.
-    candidate.preferenceCategories.forEach(category => {
-      if (me.preferenceCategories.includes(category)) {
-        total += 10;
+    // 1) Category synergy: +10 for each shared category
+    if (me.preferenceCategories && candidate.preferenceCategories) {
+      candidate.preferenceCategories.forEach(category => {
+        if (me.preferenceCategories.includes(category)) {
+          total += 10;
+        }
+      });
+    }
+  
+    // 2) Language overlap: +5 for each shared language
+    if (me.languages && candidate.languages) {
+      const sharedLangs = me.languages.filter(lang => candidate.languages.includes(lang));
+      total += sharedLangs.length * 5;
+    }
+  
+    // 3) Favorite games overlap: +15 for each shared favorite game
+    if (me.favoriteGames && candidate.favoriteGames) {
+      const commonFavGames = me.favoriteGames.filter(game => candidate.favoriteGames.includes(game));
+      total += commonFavGames.length * 15;
+    }
+  
+    // 4) Other games overlap: +10 for each shared other game
+    if (me.otherGames && candidate.otherGames) {
+      const commonOtherGames = me.otherGames.filter(game => candidate.otherGames.includes(game));
+      total += commonOtherGames.length * 10;
+    }
+  
+    // 5) Other games in favorite games: +5 for each other game in my favorites
+    if (me.favoriteGames && candidate.otherGames) {
+      const otherGamesInFavGames = candidate.otherGames.filter(game => me.favoriteGames.includes(game));
+      total += otherGamesInFavGames.length * 5;
+    }
+  
+    // 6) Age proximity: if age difference <=2 => +5, if <=5 => +3
+    if (me.age && candidate.age) {
+      const ageDiff = Math.abs(me.age - candidate.age);
+      if (ageDiff <= 2) {
+        total += 5;
+      } else if (ageDiff <= 5) {
+        total += 3;
       }
-    });
-  
-    // (Optional) You might also check the inverse:
-    // me.preferenceCategories.forEach(category => {
-    //   if (candidate.preferenceCategories.includes(category)) {
-    //     total += 10;
-    //   }
-    // });
-  
-    // 2) Language overlap: +5 for each shared language.
-    const sharedLangs = me.languages.filter(lang => candidate.languages.includes(lang));
-    total += sharedLangs.length * 5;
-  
-    // 3) Favorite games overlap: +15 for each shared favorite game.
-    const commonFavGames = me.favoriteGames.filter(game => candidate.favoriteGames.includes(game));
-    total += commonFavGames.length * 15;
-  
-    // 4) Other games overlap: +10 for each shared other game.
-    const commonOtherGames = me.otherGames.filter(game => candidate.otherGames.includes(game));
-    total += commonOtherGames.length * 10;
-  
-    // 5) Other games in favorite games: +5 for each other game in my favorites.
-    const otherGamesInFavGames = candidate.otherGames.filter(game => me.favoriteGames.includes(game));
-    total += otherGamesInFavGames.length * 5;
-  
-    // 6) Age proximity: if age difference <=2 => +5, if <=5 => +3.
-    const ageDiff = Math.abs(me.age - candidate.age);
-    if (ageDiff <= 2) {
-      total += 5;
-    } else if (ageDiff <= 5) {
-      total += 3;
     }
   
-    // 7) Bonus if candidate has liked me: +20.
+    // 7) Bonus if candidate has liked me: +30
     if (candidate.liked?.includes(me.id)) {
-      total += 20;
+      total += 30;
     }
-  
-    // (Optional) Additional factors you might add in the future:
-    // - Language preference matching (e.g., candidate.languages vs me.preferenceLanguages)
-    // - Age preference: check if candidate.age falls within me.preferenceAgeRange.
-    // - Description similarity: e.g., using NLP to score similarity between me.description and candidate.description.
-    // - Penalize if candidate is in your disliked list.
   
     console.log('Total match score:', total, 'for candidate', candidate.displayName, candidate.id);
     return total;

@@ -44,7 +44,7 @@ export async function createRandomUser(): Promise<string> {
     // Sample data arrays
     const categories = ['Strategy', 'Action', 'RPG', 'Puzzle', 'Sports'];
     const languages = ['en', 'es', 'fr', 'de', 'ru', 'jp'];
-    const genders = ['Male', 'Female'];
+    const genders = ['Male', 'Female', 'Other'];
     const games = ['Game A', 'Game B', 'Game C', 'Game D', 'Game E'];
     const descriptions = [
         'I love gaming and competitive play.',
@@ -81,13 +81,13 @@ export async function createRandomUser(): Promise<string> {
         // favoriteCategory: randomItem(categories),
         languages: randomSubset(languages, 3),
         age,
-        gender: randomItem(genders),
+        gender: randomItem(genders) as "Male" | "Female" | "Other",
         favoriteGames: randomSubset(games, 3),
         otherGames: randomSubset(games, 3),
         preferenceCategories: randomSubset(categories, 2),
         preferenceLanguages: randomSubset(languages, 2),
         preferenceAgeRange: { min: prefMin, max: prefMax },
-        preferenceGender: Math.random() < 0.5 ? 'Any' : randomItem(genders),
+        preferenceGender: Math.random() < 0.5 ? 'Any' : randomItem(genders) as "Male" | "Female" | "Other",
         description: randomItem(descriptions),
         liked: [],
         disliked: [],
