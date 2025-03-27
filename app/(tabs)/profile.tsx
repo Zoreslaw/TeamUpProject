@@ -261,9 +261,10 @@ export default function Profile() {
   }
 
   const handleDescription = async () => {
+    const initialDescription = profile.description ?? '';
     setUpdateUserProfilePayload(prev => ({
       ...(prev ?? {}),
-      description: profile.description ?? []
+      description: initialDescription
     }));
 
     setTimeout(() => {
@@ -271,7 +272,7 @@ export default function Profile() {
         title: "Description",
         key: "descEdit",
         content: <ProfileEditInput
-          value={profile.description}
+          value={initialDescription}
           onChangeText={(newText) => {
             setUpdateUserProfilePayload(
               prev => ({
@@ -738,7 +739,7 @@ export default function Profile() {
           <SignOutButton label="Sign Out" onPress={handleSignOut} style={styles.signOutButton} />
         </View>
       </View>
-      <ProfileEditModal title={modalData?.title} isVisible={isModalVisible} closeModal={handleCloseModal} onSubmit={handleSubmit} isSelector={modalData?.isSelector}>
+      <ProfileEditModal title={modalData?.title} isVisible={isModalVisible} closeModal={handleCloseModal} onSubmit={handleSubmit} isSelector={modalData?.isSelector} isSubmit={modalData?.isSubmit}>
         {modalData?.content}
       </ProfileEditModal>
     </View>

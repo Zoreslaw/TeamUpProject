@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, TextInput } from 'react-native';
 
 interface ProfileEditInputProps {
@@ -16,14 +16,25 @@ const ProfileEditInput: React.FC<ProfileEditInputProps> = ({
   isNumeric = false,
   multiline = false,
 }) => {
+  const [inputValue, setInputValue] = useState(value ?? '');
+
+  useEffect(() => {
+    setInputValue(value ?? '');
+  }, [value]);
+
+  const handleTextChange = (text: string) => {
+    setInputValue(text);
+    onChangeText(text);
+  };
+
   return (
     <View style={styles.textInputContainer}>
       <TextInput
         placeholder={placeholder}
         placeholderTextColor="#757575"
         style={styles.textInput}
-        value={value}
-        onChangeText={onChangeText}
+        value={inputValue}
+        onChangeText={handleTextChange}
 
         inputMode={isNumeric ? 'numeric' : 'text'}
         keyboardType={isNumeric ? 'numeric' : 'default'}
