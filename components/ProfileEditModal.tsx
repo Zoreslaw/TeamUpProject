@@ -28,9 +28,9 @@ const ProfileEditModal: React.FC<ProfileEditModalProps> = ({
         <View style={styles.modalOverlay}>
           <TouchableWithoutFeedback onPress={() => { }} >
             <View style={styles.modalContent} >
-              <Text style={[ styles.modalTitleText, { marginTop: isSelector ? 0 : 10 } ]}>{title}</Text>
+              <Text style={styles.modalTitleText}>{title}</Text>
               <Divider />
-              <View style={styles.modalChildrenContainer}>
+              <View style={[ styles.modalChildrenContainer, { marginTop: isSelector ? 0 : 10 } ]}>
                 {children}
               </View>
               <Divider />
