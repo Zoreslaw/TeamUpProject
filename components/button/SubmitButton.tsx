@@ -1,6 +1,8 @@
 import React from 'react';
 import { Pressable, Text, StyleSheet, ViewStyle } from 'react-native';
 
+import { useThemeColor } from '@/hooks/useThemeColor';
+
 type SubmitButtonProps = {
   label: string;
   style?: ViewStyle;
@@ -8,16 +10,19 @@ type SubmitButtonProps = {
 }
 
 export function SubmitButton({ label, style, onPress }: SubmitButtonProps) {
-  return(
+  const secondaryBackgroundColor = useThemeColor({}, 'secondaryBackground');
+  const textColor = useThemeColor({}, 'text');
+
+  return (
     <Pressable
       onPress={onPress}
       style={({ pressed }) => [
-        styles.buttonbase,
+        [styles.buttonbase, { backgroundColor: secondaryBackgroundColor }],
         pressed && styles.buttonPressed,
         style,
       ]}
     >
-      <Text style={styles.buttonText}>{label}</Text>
+      <Text style={[styles.buttonText, { color: textColor }]}>{label}</Text>
     </Pressable>
   );
 }
@@ -29,12 +34,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgba(49, 49, 49, 1)',
     borderRadius: 300,
-    
+
   },
   buttonPressed: {
-    backgroundColor: 'rgba(49, 49, 49, 0.6)',
+    opacity: 0.5,
   },
   buttonText: {
     fontFamily: 'Roboto',
@@ -43,6 +47,5 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 26,
     letterSpacing: 0,
-    color: '#F7F7F7',
   }
 })
