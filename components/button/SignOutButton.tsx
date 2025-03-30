@@ -1,6 +1,8 @@
 import React from 'react';
-import { Pressable, Text, StyleSheet, ViewStyle } from 'react-native';
+import { View, Pressable, Text, StyleSheet, ViewStyle } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+
+import { useThemeColor } from '@/hooks/useThemeColor';
 
 type SignOutButtonProps = {
   label: string;
@@ -14,35 +16,46 @@ type SignOutButtonProps = {
 }
 
 export function SignOutButton({ label, style, onPress }: SignOutButtonProps) {
-  return(
-    <Pressable
-      onPress={onPress}
-      style={({ pressed }) => [
-        styles.buttonbase,
-        pressed && styles.buttonPressed,
-        style,
-      ]}
-    >
-      <Feather name="log-out" size={24} color="#F7F7F7" />
-      <Text style={styles.buttonText}>{label}</Text>
-    </Pressable>
+  const backgroundColor = useThemeColor({}, 'background');
+  const secondaryBackgroundColor = useThemeColor({}, 'secondaryBackground');
+  const textColor = useThemeColor({}, 'text');
+
+  return (
+    <View style={[styles.buttonContainer, { backgroundColor: backgroundColor }]}>
+      <Pressable
+        onPress={onPress}
+        style={({ pressed }) => [
+          [styles.buttonbase, { backgroundColor: secondaryBackgroundColor }],
+          pressed && styles.buttonPressed,
+          style,
+        ]}
+      >
+        <Feather name="log-out" size={24} color={textColor} />
+        <Text style={[styles.buttonText, { color: textColor }]}>{label}</Text>
+      </Pressable>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  buttonContainer: {
+    width: 250,
+    height: 50,
+    borderRadius: 300,
+    marginBottom: 10,
+  },
   buttonbase: {
     width: 250,
     height: 50,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start',
-    backgroundColor: 'rgba(49, 49, 49, 1)',
     borderRadius: 300,
     paddingLeft: 30,
-    
+
   },
   buttonPressed: {
-    backgroundColor: 'rgba(30, 30, 30, 1)',
+    opacity: 0.5,
   },
   buttonText: {
     fontFamily: 'Roboto',
@@ -51,7 +64,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     lineHeight: 26,
     letterSpacing: 0,
-    color: '#F7F7F7',
     marginLeft: 32,
   }
 })
