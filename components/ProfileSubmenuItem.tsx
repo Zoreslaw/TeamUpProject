@@ -1,6 +1,8 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 
+import { useThemeColor } from '@/hooks/useThemeColor';
+
 interface ProfileSubmenuItemProps {
   title: string;
   contents: string[];
@@ -12,12 +14,15 @@ const ProfileSubmenuItem: React.FC<ProfileSubmenuItemProps> = ({
   contents,
   onPress,
 }) => {
+  const secondaryBackgroundColor = useThemeColor({}, 'secondaryBackground');
+  const textColor = useThemeColor({}, 'text');
+
   return(
     <View style={styles.itemContainer}>
-      <Text style={styles.titleText}>{title}</Text>
-      <TouchableOpacity onPress={onPress} style={styles.contentsContainer}>
+      <Text style={[styles.titleText, { color: textColor }]}>{title}</Text>
+      <TouchableOpacity onPress={onPress} style={[styles.contentsContainer, { backgroundColor: secondaryBackgroundColor }]}>
         {contents.map((text, index) => (
-          <Text key={index} style={styles.contentsText}>
+          <Text key={index} style={[styles.contentsText, {color: textColor}]}>
             {text}
           </Text>
         ))}
@@ -37,13 +42,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 15,
     fontWeight: 400,
-    color: '#FFFFFF',
     marginLeft: 10,
   },
   contentsContainer: {
     minHeight: 50,
     justifyContent: 'center',
-    backgroundColor: '#242424',
     borderColor: '#757575',
     borderRadius: 10,
     borderWidth: 1,
@@ -55,7 +58,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 20,
     fontWeight: 400,
-    color: '#FFFFFF',
     paddingVertical: 0,
   }
 })
