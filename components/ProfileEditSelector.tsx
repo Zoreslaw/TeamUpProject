@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Divider } from './ui/Divider';
 
+import { useThemeColor } from '@/hooks/useThemeColor';
+
 interface ProfileEditSelectorProps {
   options: string[];
   selected: string;
@@ -13,6 +15,8 @@ const ProfileEditSelector: React.FC<ProfileEditSelectorProps> = ({
   selected,
   onSelect,
 }) => {
+  const secondaryTextColor = useThemeColor({}, 'secondaryText');
+
   return (
     <View style={styles.container}>
       {options.map((field) => (
@@ -27,7 +31,7 @@ const ProfileEditSelector: React.FC<ProfileEditSelectorProps> = ({
           <Divider />
           <Text
           style={[
-            styles.optionText,
+            [styles.optionText, { color: secondaryTextColor }],
             selected === field && styles.selectedText,
           ]}
           >
@@ -57,11 +61,11 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontWeight: 400,
     fontSize: 20,
-    color: '#FFF',
     minHeight: 30,
     alignItems: 'center',
   },
   selectedText: {
+    color: '#FFF',
     fontWeight: 'bold',
   },
 });
