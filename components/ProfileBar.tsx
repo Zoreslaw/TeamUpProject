@@ -22,6 +22,8 @@ const ProfileBar: React.FC<ProfileBarProps> = ({
   onEditPress,
   }) => {
   const backgroundColor = useThemeColor({}, 'background');
+  const textColor = useThemeColor({}, 'text');
+  const secondaryTextColor = useThemeColor({}, 'secondaryText');
 
   return (
     <View>
@@ -37,8 +39,8 @@ const ProfileBar: React.FC<ProfileBarProps> = ({
           )}
         </TouchableOpacity>
         <View style={styles.profileTextContainer}>
-          {name ? <Text style={styles.name}>{name}</Text> : ''}
-          {email ? <Text style={styles.email}>{email}</Text> : ''}
+          {name ? <Text style={[styles.name, { color: textColor }]}>{name}</Text> : ''}
+          {email ? <Text style={[styles.email, { color: secondaryTextColor }]}>{email}</Text> : ''}
         </View>
         <TouchableOpacity onPress={onEditPress} style={styles.editIcon}>
           <Feather name="edit" size={24} color="#757575"/>
@@ -74,12 +76,10 @@ const styles = StyleSheet.create({
   },
   name: {
     fontSize: 16,
-    color: '#FFFFFF',
     fontWeight: 'bold',
   },
   email: {
     fontSize: 14,
-    color: '#999999',
     marginTop: 4,
   },
   editIcon: {
