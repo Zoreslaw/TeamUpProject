@@ -19,6 +19,7 @@ const ProfileMenuItem: React.FC<ProfileMenuItemProps> = ({
   onPress,
 }) => {
   const backgroundColor = useThemeColor({}, 'background');
+  const textColor = useThemeColor({}, 'text');
 
   return(
     <View>
@@ -26,7 +27,7 @@ const ProfileMenuItem: React.FC<ProfileMenuItemProps> = ({
       <TouchableOpacity onPress={onPress} style={[styles.itemContainer, { backgroundColor }]}>
         <View style={styles.leftSection}>
           {iconName === "game-controller-outline" ? <Ionicons name={iconName as any} size={24} color="#757575" style={styles.itemIcon} /> : <Feather name={iconName as any} size={24} color="#757575" style={styles.itemIcon} />}
-          <Text style={styles.itemText}>{title}</Text>
+          <Text style={[ styles.itemText, { color: textColor }]}>{title}</Text>
         </View>
         <Feather name={ isPressed ? "chevron-up" : "chevron-down" } size={20} color="#757575" />
       </TouchableOpacity>
@@ -55,7 +56,6 @@ const styles = StyleSheet.create({
     fontFamily: "Roboto",
     fontSize: 20,
     fontWeight: '400',
-    color: '#FFFFFF',
   },
 })
 
