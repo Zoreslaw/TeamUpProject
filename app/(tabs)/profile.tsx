@@ -49,7 +49,6 @@ export default function Profile() {
   const [isBioPressed, setIsBioPressed] = useState(false);
   const [isPreferencesPressed, setIsPreferencesPressed] = useState(false);
   const [isGamesPressed, setIsGamesPressed] = useState(false);
-  const [isSettingsPressed, setIsSettingsgPressed] = useState(false);
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [modalData, setModalData] = useState<ModalData | null>(null);
   const [updateUserProfilePayload, setUpdateUserProfilePayload] = useState<UserProfileUpdate | null>(null);
@@ -161,10 +160,6 @@ export default function Profile() {
 
   const handleGames = async () => {
     setIsGamesPressed(!isGamesPressed);
-  }
-
-  const handleSettings = async () => {
-    setIsSettingsgPressed(!isSettingsPressed);
   }
 
   const handleFavoriteCategory = async () => {
@@ -732,7 +727,6 @@ export default function Profile() {
             <ProfileSubmenuItem title='Favorite Games' contents={profile.favoriteGames} onPress={handleFavoriteGames} />
             <ProfileSubmenuItem title='Other Games' contents={profile.otherGames} onPress={handleOtherGames} />
           </ProfileAnimatedSubmenu>
-          <ProfileMenuItem title="Settings" iconName="settings" isPressed={isSettingsPressed} onPress={handleSettings} />
         </ScrollView>
         <View style={styles.buttonContainer}>
           <SignOutButton label="Sign Out" onPress={handleSignOut} style={styles.signOutButton} />
