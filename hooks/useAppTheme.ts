@@ -1,6 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Appearance, Platform } from "react-native";
 import * as NavigationBar from "expo-navigation-bar";
+import * as StatusBar from 'expo-status-bar';
 import { useEffect, useState } from "react";
 import { useThemeColor } from "@/hooks/useThemeColor";
 
@@ -40,6 +41,7 @@ export default function useAppTheme() {
         await setAppearanceColorScheme(theme);
         await saveThemeToStorage(theme);
         await setNavigationColor(backgroundColor);
+        await setStatusColor(theme);
         console.info("Theme updated", { theme });
       } catch (error) {
         console.error("Error updating theme", error);
@@ -111,3 +113,13 @@ const setNavigationColor = async (backgroundColor: string): Promise<void> => {
     console.error("Error setting navigation bar color", error);
   }
 };
+
+const setStatusColor = async (theme: string): Promise<void> => {
+  try {
+    if (Platform.OS === "android") {
+      await StatusBar.setStatusBarBackgroundColor(theme === "dark" ? "#121212" : "white");
+    }
+  } catch (error) {
+    console.error("Error setting status bar color", error);
+  }
+}
