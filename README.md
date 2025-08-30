@@ -1,50 +1,305 @@
-# Welcome to your Expo app 👋
+# TeamUp - Gaming-Focused Dating App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Project Overview
 
-## Get started
+TeamUp is a sophisticated React Native mobile application designed to help gamers find compatible teammates based on shared gaming interests, language preferences, and personal compatibility. The app combines modern dating app functionality with gaming community features, creating a unique platform for gamers to connect.
 
-1. Install dependencies
+## Table of Contents
 
+- [Features](#features)
+- [Technology Stack](#technology-stack)
+- [Architecture](#architecture)
+- [Installation & Setup](#installation--setup)
+- [Project Structure](#project-structure)
+- [Key Components](#key-components)
+- [Authentication System](#authentication-system)
+- [Database Design](#database-design)
+- [Localization](#localization)
+- [Testing](#testing)
+- [Build & Deployment](#build--deployment)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+
+## Features
+
+### Core Functionality
+- **User Authentication**: Email/password, Google Sign-In, and Apple Sign-In support
+- **Profile Management**: Comprehensive user profiles with gaming preferences, languages, and personal details
+- **Swipe Interface**: Tinder-like card swiping system for discovering potential matches
+- **Real-time Chat**: Instant messaging system for matched users
+- **Match Algorithm**: Intelligent matching based on gaming preferences, languages, age, and gender
+- **User Presence**: Online/offline status indicators
+- **Search & Filtering**: Advanced search capabilities in conversations
+
+### Gaming-Specific Features
+- **Game Preferences**: Users can specify favorite games and gaming categories
+- **Language Matching**: Multi-language support for international gaming communities
+- **Team Formation**: Focus on finding compatible teammates for multiplayer games
+- **Gaming Categories**: Organized gaming preference system
+
+### User Experience
+- **Responsive Design**: Optimized for both iOS and Android platforms
+- **Dark/Light Theme**: Adaptive theming system
+- **Haptic Feedback**: Enhanced user interaction with device vibrations
+- **Smooth Animations**: React Native Reanimated for fluid user experience
+- **Offline Support**: Robust error handling and offline capabilities
+
+## Technology Stack
+
+### Frontend
+- **React Native 0.76.7**: Cross-platform mobile development
+- **Expo SDK 52**: Development platform and tools
+- **TypeScript**: Type-safe JavaScript development
+- **React Navigation**: Navigation and routing system
+
+### Backend & Services
+- **Firebase**: Complete backend-as-a-service solution
+  - Authentication (Firebase Auth)
+  - Firestore Database
+  - Real-time Database
+  - Cloud Storage
+  - Cloud Functions
+  - Analytics & Crashlytics
+
+### State Management & Data
+- **React Context**: Global state management
+- **React Query (TanStack)**: Server state management and caching
+- **AsyncStorage**: Local data persistence
+
+### UI & Animation
+- **React Native Reanimated**: High-performance animations
+- **Expo Linear Gradient**: Gradient effects
+- **React Native Gesture Handler**: Touch and gesture handling
+- **Expo Haptics**: Haptic feedback
+
+### Development Tools
+- **ESLint**: Code quality and consistency
+- **Jest**: Testing framework
+- **TypeScript**: Static type checking
+- **Expo Dev Client**: Development and debugging tools
+
+## Architecture
+
+The application follows a modern React Native architecture with:
+
+- **File-based Routing**: Using Expo Router for navigation
+- **Component-based Architecture**: Modular, reusable components
+- **Custom Hooks**: Encapsulated business logic
+- **Context API**: Global state management
+- **Service Layer**: Firebase integration and API calls
+- **Type Safety**: Comprehensive TypeScript interfaces
+
+## Installation & Setup
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+- Expo CLI
+- Expo Go app on your mobile device (for development builds)
+
+### Setup Instructions
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Zoreslaw/TeamUpProject.git
+   cd TeamUpProject
+   ```
+
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-2. Start the app
+3. **Environment Configuration**
+   - Configure Firebase project settings
+   - Set up Google Services configuration files
+   - Configure Apple Sign-In credentials
 
+4. **Development Testing**
    ```bash
-    npx expo start
+   # Start Expo development server
+   npm start
+   
+   # Scan QR code with Expo Go app on your device
+   # The app will load directly on your device for testing
    ```
 
-In the output, you'll find options to open the app in a
+5. **Production Testing**
+   ```bash
+   # Build production version in Expo cloud
+   npm run build-production
+   
+   # Scan the generated QR code with your device
+   # This will install the production build for testing
+   ```
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+### Testing Workflow
+- **Development**: Use `npm start` to generate QR code, scan with Expo Go app for live testing
+- **Production**: Use `npm run build-production` to create cloud build, scan QR code to install production version
+- **No Local Simulators Required**: All testing is done directly on physical devices via QR code scanning
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+### Available Scripts
+- `npm start`: Start Expo development server and generate QR code for testing
+- `npm test`: Run test suite
+- `npm run lint`: Check code quality
+- `npm run build-development`: Build development version in Expo cloud
+- `npm run build-production`: Build production version in Expo cloud
 
-## Get a fresh project
+## Project Structure
 
-When you're ready, run:
-
-```bash
-npm run reset-project
+```
+TeamUpProject/
+├── app/                          # Main application screens
+│   ├── (authentication)/        # Authentication flow
+│   ├── (swipe)/                # Swipe/matching interface
+│   ├── (tabs)/                 # Main tab navigation
+│   ├── conversation/            # Chat conversations
+│   └── index.tsx               # Entry point
+├── components/                  # Reusable UI components
+│   ├── authentication/          # Auth-related components
+│   ├── button/                 # Button components
+│   ├── Swipe/                  # Swipe interface components
+│   └── ui/                     # Basic UI elements
+├── contexts/                    # React Context providers
+├── hooks/                       # Custom React hooks
+├── localization/                # Internationalization
+├── types/                       # TypeScript type definitions
+├── utils/                       # Utility functions
+└── assets/                      # Images, fonts, and static files
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Key Components
 
-## Learn more
+### Authentication Components
+- **AuthContext**: Global authentication state management
+- **SignInScreen**: User login interface
+- **AuthHeader**: Authentication screen headers
+- **Social Buttons**: Google and Apple sign-in buttons
 
-To learn more about developing your project with Expo, look at the following resources:
+### Swipe Interface
+- **SwipeCard**: Individual user profile cards
+- **SwipeTopBar**: Navigation and controls
+- **SwipeBottomBar**: Like/dislike action buttons
+- **MatchOverlay**: Match celebration screen
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### Chat System
+- **ChatCard**: Conversation list items
+- **ConversationBubble**: Individual message display
+- **ConversationInput**: Message input interface
+- **MessagesList**: Scrollable message history
 
-## Join the community
+### Profile Management
+- **ProfileHeader**: User profile information display
+- **ProfileEditModal**: Profile editing interface
+- **ProfileEditInput**: Various input types for profile data
+- **ProfileAnimatedSubmenu**: Animated profile sections
 
-Join our community of developers creating universal apps.
+## Authentication System
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+The app implements a comprehensive authentication system with:
+
+- **Multiple Sign-in Methods**: Email/password, Google, Apple
+- **Secure Token Management**: Firebase JWT tokens
+- **User Profile Creation**: Automatic profile setup on first login
+- **Session Persistence**: Maintains login state across app restarts
+- **Error Handling**: User-friendly error messages and recovery
+
+## Database Design
+
+### Firestore Collections
+- **users**: User profiles and preferences
+- **conversations**: Chat conversation metadata
+- **messages**: Individual chat messages
+- **matches**: User matching data
+
+### Data Models
+- **User Profile**: Comprehensive user information including gaming preferences
+- **Conversation**: Chat thread management
+- **Message**: Individual message storage with metadata
+- **Match**: User compatibility and interaction data
+
+## Localization
+
+The application supports multiple languages with:
+
+- **i18next Integration**: Professional internationalization
+- **Language Support**: English and Polish (expandable)
+- **Dynamic Language Switching**: Runtime language changes
+- **Fallback System**: Graceful handling of missing translations
+- **RTL Support**: Right-to-left language compatibility
+
+## Testing
+
+The project includes a comprehensive testing setup:
+
+- **Jest Framework**: Unit and integration testing
+- **Component Testing**: React component test coverage
+- **Snapshot Testing**: UI regression testing
+- **Test Utilities**: Custom testing helpers and mocks
+
+## Build & Deployment
+
+### Development Builds
+```bash
+npm run build-development
+```
+
+### Production Builds
+```bash
+npm run build-production
+```
+
+### Platform-Specific Configuration
+- **iOS**: Apple Sign-In, tablet support, localization
+- **Android**: Google Services, adaptive icons, keyboard handling
+- **Web**: Progressive web app capabilities
+
+## Screenshots
+
+### Authentication Flow
+Here must be image of the sign-in screen showing the TeamUp logo, social login buttons (Google, Apple, Email), and the app's branding elements.
+
+### Home Screen
+Here must be image of the main home screen featuring the neon "Find Teammate" button, the app's gaming-focused design, and the overall aesthetic.
+
+### Swipe Interface
+Here must be image of the swipe screen displaying user profile cards with gaming information, like/dislike buttons, and the card-based matching interface.
+
+### Chat Interface
+Here must be image of the chat screen showing conversation list, search functionality, and the messaging interface design.
+
+### Profile Management
+Here must be image of the profile screen displaying user information, edit options, and the comprehensive profile management system.
+
+### Match Celebration
+Here must be image of the match overlay screen showing the celebration animation when two users match successfully.
+
+## Contributing
+
+### Development Guidelines
+- Follow TypeScript best practices
+- Maintain component reusability
+- Write comprehensive tests
+- Follow the established code style
+- Update documentation for new features
+
+### Code Quality
+- ESLint configuration for code consistency
+- TypeScript for type safety
+- Component testing with Jest
+- Responsive design principles
+
+## Project Status
+
+**Current Version**: 1.0.0  
+**Development Status**: Active Development  
+**Platform Support**: iOS, Android, Web  
+**Target Audience**: Gaming community members seeking teammates and relationships
+
+## License
+
+This project is proprietary software developed for educational and commercial purposes.
+
+---
+
+**Developed with ❤️ using React Native and Expo**
