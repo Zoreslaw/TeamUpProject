@@ -277,7 +277,6 @@ Platform notes:
 ## Project Status
 
 - **Version**: 1.0.0
-- **Development**: Active
 - **Platforms**: iOS, Android, Web
 - **Audience**: Gamers seeking teammates and relationships
 
@@ -551,7 +550,6 @@ Aplikacja opiera się na nowoczesnej architekturze React Native:
 ## Status projektu
 
 - **Wersja**: 1.0.0
-- **Status**: aktywny rozwój
 - **Platformy**: iOS, Android, Web
 - **Docelowa grupa**: gracze szukający drużyn i relacji
 
