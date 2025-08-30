@@ -1,5 +1,18 @@
 # TeamUp - Gaming-Focused Dating App
 
+<div align="center">
+
+[![English](https://img.shields.io/badge/🇺🇸%20English-Active-brightgreen?style=for-the-badge)](#english)
+[![Polish](https://img.shields.io/badge/🇵🇱%20Polish-Inactive-lightgrey?style=for-the-badge)](#polish)
+
+</div>
+
+---
+
+<div id="english">
+
+# TeamUp - Gaming-Focused Dating App
+
 ## Project Overview
 
 TeamUp is a sophisticated React Native mobile application designed to help gamers find compatible teammates based on shared gaming interests, language preferences, and personal compatibility. The app combines modern dating app functionality with gaming community features, creating a unique platform for gamers to connect.
@@ -259,8 +272,6 @@ npm run build-production
 ---
 
 ### 🔐 Authentication Flow
-
-
 <div align="center">
 
 <img width="180" height="400" alt="Sign-In Screen" src="https://github.com/user-attachments/assets/666ad42c-1d6c-4145-bfbf-60a0974e1f3e" />
@@ -272,8 +283,6 @@ npm run build-production
 ---
 
 ### 🏠 Home Screen
-
-
 <div align="center">
 
 <img width="180" height="400" alt="Home Screen" src="https://github.com/user-attachments/assets/57488af4-816d-45d5-8d9f-20ac00aa1e9b" />
@@ -283,8 +292,6 @@ npm run build-production
 ---
 
 ### 💫 Swipe Interface
-
-
 <div align="center">
 
 <img width="180" height="400" alt="Swipe Card" src="https://github.com/user-attachments/assets/183fb9d9-f943-49b7-85ab-bbed9b07b30d" />
@@ -298,8 +305,6 @@ npm run build-production
 ---
 
 ### 💬 Chat Interface
-
-
 <div align="center">
 
 <img width="180" height="400" alt="Chat List" src="https://github.com/user-attachments/assets/4f513404-caf9-4b9c-8ec0-0be391125122" />
@@ -311,16 +316,13 @@ npm run build-production
 ---
 
 ### 👤 Profile Management
-
-
 <div align="center">
 
 <img width="180" height="400" alt="Profile Screen" src="https://github.com/user-attachments/assets/eec79275-35fb-4be7-acdd-cdeefb8e6a0b" />
 &nbsp;&nbsp;&nbsp;&nbsp;
 <img width="180" height="400" alt="Profile Edit" src="https://github.com/user-attachments/assets/fa0cd86d-7f0a-4644-9add-331f2beca383" />
 &nbsp;&nbsp;&nbsp;&nbsp;
-<img width="180" height="400" alt="image" src="https://github.com/user-attachments/assets/9eb44e7e-567a-47c3-a86f-3f2811e7cf22" />
-
+<img width="180" height="400" alt="Preferences" src="https://github.com/user-attachments/assets/2fdfb926-5280-4224-9f57-25773cfb362a" />
 
 <br><br>
 
@@ -361,3 +363,375 @@ This project is proprietary software developed for educational purposes.
 ---
 
 **Developed with ❤️ using React Native and Expo**
+
+</div>
+
+---
+
+<div id="polish">
+
+# TeamUp - Aplikacja Randkowa Skupiona na Graczach
+
+## Przegląd Projektu
+
+TeamUp to zaawansowana aplikacja mobilna React Native zaprojektowana, aby pomóc graczom znaleźć kompatybilnych członków drużyny na podstawie wspólnych zainteresowań gamingowych, preferencji językowych i osobistej kompatybilności. Aplikacja łączy nowoczesną funkcjonalność aplikacji randkowych z funkcjami społeczności gamingowej, tworząc unikalną platformę dla graczy do nawiązywania kontaktów.
+
+## Spis Treści
+
+- [Funkcje](#funkcje)
+- [Stos Technologiczny](#stos-technologiczny)
+- [Architektura](#architektura)
+- [Instalacja i Konfiguracja](#instalacja-i-konfiguracja)
+- [Struktura Projektu](#struktura-projektu)
+- [Główne Komponenty](#główne-komponenty)
+- [System Uwierzytelniania](#system-uwierzytelniania)
+- [Projekt Bazy Danych](#projekt-bazy-danych)
+- [Lokalizacja](#lokalizacja)
+- [Testowanie](#testowanie)
+- [Budowanie i Wdrażanie](#budowanie-i-wdrażanie)
+- [Zrzuty Ekranu](#zrzuty-ekranu)
+- [Współpraca](#współpraca)
+
+## Funkcje
+
+### Podstawowa Funkcjonalność
+- **Uwierzytelnianie Użytkowników**: Wsparcie dla email/hasło, Google Sign-In i Apple Sign-In
+- **Zarządzanie Profilami**: Kompleksowe profile użytkowników z preferencjami gamingowymi, językami i szczegółami osobistymi
+- **Interfejs Przesuwania**: System przesuwania kart w stylu Tinder do odkrywania potencjalnych dopasowań
+- **Czat w Czasie Rzeczywistym**: System natychmiastowego przesyłania wiadomości dla dopasowanych użytkowników
+- **Algorytm Dopasowywania**: Inteligentne dopasowywanie na podstawie preferencji gamingowych, języków, wieku i płci
+- **Obecność Użytkownika**: Wskaźniki statusu online/offline
+- **Wyszukiwanie i Filtrowanie**: Zaawansowane możliwości wyszukiwania w konwersacjach
+
+### Funkcje Specyficzne dla Gier
+- **Preferencje Gier**: Użytkownicy mogą określić ulubione gry i kategorie gamingowe
+- **Dopasowywanie Językowe**: Wsparcie wielojęzyczne dla międzynarodowych społeczności gamingowych
+- **Formowanie Drużyn**: Skupienie na znajdowaniu kompatybilnych członków drużyny dla gier wieloosobowych
+- **Kategorie Gamingowe**: Zorganizowany system preferencji gamingowych
+
+### Doświadczenie Użytkownika
+- **Responsywny Design**: Zoptymalizowany dla platform iOS i Android
+- **Motyw Ciemny/Jasny**: Adaptacyjny system motywów
+- **Wibracje Haptyczne**: Ulepszona interakcja użytkownika z wibracjami urządzenia
+- **Płynne Animacje**: React Native Reanimated dla płynnego doświadczenia użytkownika
+- **Wsparcie Offline**: Solidna obsługa błędów i możliwości offline
+
+## Stos Technologiczny
+
+### Frontend
+- **React Native 0.76.7**: Cross-platform development mobilny
+- **Expo SDK 52**: Platforma deweloperska i narzędzia
+- **TypeScript**: Type-safe development JavaScript
+- **React Navigation**: System nawigacji i routingu
+
+### Backend i Serwisy
+- **Firebase**: Kompletne rozwiązanie backend-as-a-service
+  - Uwierzytelnianie (Firebase Auth)
+  - Baza danych Firestore
+  - Baza danych w czasie rzeczywistym
+  - Cloud Storage
+  - Cloud Functions
+  - Analytics i Crashlytics
+
+### Zarządzanie Stanem i Danymi
+- **React Context**: Globalne zarządzanie stanem
+- **React Query (TanStack)**: Zarządzanie stanem serwera i cachowanie
+- **AsyncStorage**: Lokalna persystencja danych
+
+### UI i Animacje
+- **React Native Reanimated**: Animacje wysokiej wydajności
+- **Expo Linear Gradient**: Efekty gradientowe
+- **React Native Gesture Handler**: Obsługa dotyku i gestów
+- **Expo Haptics**: Wibracje haptyczne
+
+### Narzędzia Deweloperskie
+- **ESLint**: Jakość kodu i spójność
+- **Jest**: Framework testowania
+- **TypeScript**: Statyczne sprawdzanie typów
+- **Expo Dev Client**: Narzędzia deweloperskie i debugowania
+
+## Architektura
+
+Aplikacja następuje nowoczesną architekturę React Native z:
+
+- **Routing oparty na plikach**: Używając Expo Router do nawigacji
+- **Architektura oparta na komponentach**: Modułowe, wielokrotnego użytku komponenty
+- **Custom Hooks**: Enkapsulowana logika biznesowa
+- **Context API**: Globalne zarządzanie stanem
+- **Warstwa Serwisowa**: Integracja Firebase i wywołania API
+- **Type Safety**: Kompleksowe interfejsy TypeScript
+
+## Instalacja i Konfiguracja
+
+### Wymagania Wstępne
+- Node.js (v18 lub wyższy)
+- npm lub yarn
+- Expo CLI
+- Aplikacja Expo Go na urządzeniu mobilnym (dla buildów deweloperskich)
+
+### Instrukcje Konfiguracji
+
+1. **Sklonuj repozytorium**
+   ```bash
+   git clone https://github.com/Zoreslaw/TeamUpProject.git
+   cd TeamUpProject
+   ```
+
+2. **Zainstaluj zależności**
+   ```bash
+   npm install
+   ```
+
+3. **Konfiguracja Środowiska**
+   - Skonfiguruj ustawienia projektu Firebase
+   - Skonfiguruj pliki Google Services
+   - Skonfiguruj poświadczenia Apple Sign-In
+
+4. **Testowanie Deweloperskie**
+   ```bash
+   # Uruchom serwer deweloperski Expo
+   npm start
+   
+   # Zeskanuj kod QR aplikacją Expo Go na urządzeniu
+   # Aplikacja załaduje się bezpośrednio na urządzeniu do testowania
+   ```
+
+5. **Testowanie Produkcyjne**
+   ```bash
+   # Zbuduj wersję produkcyjną w chmurze Expo
+   npm run build-production
+   
+   # Zeskanuj wygenerowany kod QR urządzeniem
+   # To zainstaluje build produkcyjny do testowania
+   ```
+
+### Workflow Testowania
+- **Deweloperskie**: Użyj `npm start` aby wygenerować kod QR, zeskanuj aplikacją Expo Go do testowania na żywo
+- **Produkcyjne**: Użyj `npm run build-production` aby utworzyć build w chmurze, zeskanuj kod QR aby zainstalować wersję produkcyjną
+- **Brak Lokalnych Symulatorów Wymaganych**: Wszystkie testy są wykonywane bezpośrednio na fizycznych urządzeniach przez skanowanie kodu QR
+
+### Dostępne Skrypty
+- `npm start`: Uruchom serwer deweloperski Expo i wygeneruj kod QR do testowania
+- `npm test`: Uruchom zestaw testów
+- `npm run lint`: Sprawdź jakość kodu
+- `npm run build-development`: Zbuduj wersję deweloperską w chmurze Expo
+- `npm run build-production`: Zbuduj wersję produkcyjną w chmurze Expo
+
+## Struktura Projektu
+
+```
+TeamUpProject/
+├── app/                          # Główne ekrany aplikacji
+│   ├── (authentication)/        # Przepływ uwierzytelniania
+│   ├── (swipe)/                # Interfejs przesuwania/dopasowywania
+│   ├── (tabs)/                 # Główna nawigacja zakładek
+│   ├── conversation/            # Konwersacje czatu
+│   └── index.tsx               # Punkt wejścia
+├── components/                  # Wielokrotnego użytku komponenty UI
+│   ├── authentication/          # Komponenty związane z auth
+│   ├── button/                 # Komponenty przycisków
+│   ├── Swipe/                  # Komponenty interfejsu przesuwania
+│   └── ui/                     # Podstawowe elementy UI
+├── contexts/                    # Dostawcy React Context
+├── hooks/                       # Custom React hooks
+├── localization/                # Internacjonalizacja
+├── types/                       # Definicje typów TypeScript
+├── utils/                       # Funkcje narzędziowe
+└── assets/                      # Obrazy, czcionki i pliki statyczne
+```
+
+## Główne Komponenty
+
+### Komponenty Uwierzytelniania
+- **AuthContext**: Globalne zarządzanie stanem uwierzytelniania
+- **SignInScreen**: Interfejs logowania użytkownika
+- **AuthHeader**: Nagłówki ekranów uwierzytelniania
+- **Social Buttons**: Przyciski Google i Apple sign-in
+
+### Interfejs Przesuwania
+- **SwipeCard**: Indywidualne karty profili użytkowników
+- **SwipeTopBar**: Nawigacja i kontrolki
+- **SwipeBottomBar**: Przyciski akcji polub/nie polub
+- **MatchOverlay**: Ekran celebracji dopasowania
+
+### System Czatowania
+- **ChatCard**: Elementy listy konwersacji
+- **ConversationBubble**: Wyświetlanie indywidualnych wiadomości
+- **ConversationInput**: Interfejs wprowadzania wiadomości
+- **MessagesList**: Przewijalna historia wiadomości
+
+### Zarządzanie Profilami
+- **ProfileHeader**: Wyświetlanie informacji o profilu użytkownika
+- **ProfileEditModal**: Interfejs edycji profilu
+- **ProfileEditInput**: Różne typy inputów dla danych profilu
+- **ProfileAnimatedSubmenu**: Animowane sekcje profilu
+
+## System Uwierzytelniania
+
+Aplikacja implementuje kompleksowy system uwierzytelniania z:
+
+- **Wieloma Metodami Logowania**: Email/hasło, Google, Apple
+- **Bezpiecznym Zarządzaniem Tokenami**: Tokeny JWT Firebase
+- **Tworzeniem Profili Użytkowników**: Automatyczna konfiguracja profilu przy pierwszym logowaniu
+- **Persystencją Sesji**: Utrzymuje stan logowania między restartami aplikacji
+- **Obsługą Błędów**: Przyjazne dla użytkownika komunikaty błędów i odzyskiwanie
+
+## Projekt Bazy Danych
+
+### Kolekcje Firestore
+- **users**: Profile użytkowników i preferencje
+- **conversations**: Metadane konwersacji czatu
+- **messages**: Indywidualne wiadomości czatu
+- **matches**: Dane dopasowywania użytkowników
+
+### Modele Danych
+- **Profil Użytkownika**: Kompleksowe informacje o użytkowniku włączając preferencje gamingowe
+- **Konwersacja**: Zarządzanie wątkami czatu
+- **Wiadomość**: Przechowywanie indywidualnych wiadomości z metadanymi
+- **Dopasowanie**: Dane kompatybilności i interakcji użytkowników
+
+## Lokalizacja
+
+Aplikacja wspiera wiele języków z:
+
+- **Integracją i18next**: Profesjonalna internacjonalizacja
+- **Wsparciem Językowym**: Angielski i Polski (rozszerzalne)
+- **Dynamicznym Przełączaniem Języków**: Zmiany języków w czasie rzeczywistym
+- **Systemem Fallback**: Łagodne obsługiwanie brakujących tłumaczeń
+- **Wsparciem RTL**: Kompatybilność z językami od prawej do lewej
+
+## Testowanie
+
+Projekt zawiera kompleksową konfigurację testowania:
+
+- **Framework Jest**: Testowanie jednostkowe i integracyjne
+- **Testowanie Komponentów**: Pokrycie testami komponentów React
+- **Testowanie Snapshot**: Testowanie regresji UI
+- **Narzędzia Testowe**: Custom testowe helpers i mocki
+
+## Budowanie i Wdrażanie
+
+### Buildy Deweloperskie
+```bash
+npm run build-development
+```
+
+### Buildy Produkcyjne
+```bash
+npm run build-production
+```
+
+### Konfiguracja Specyficzna dla Platformy
+- **iOS**: Apple Sign-In, wsparcie tabletu, lokalizacja
+- **Android**: Google Services, adaptacyjne ikony, obsługa klawiatury
+- **Web**: Możliwości progresywnej aplikacji webowej
+
+## Zrzuty Ekranu
+
+---
+
+### 🔐 Przepływ Uwierzytelniania
+<div align="center">
+
+<img width="180" height="400" alt="Ekran Logowania" src="https://github.com/user-attachments/assets/666ad42c-1d6c-4145-bfbf-60a0974e1f3e" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="180" height="400" alt="Uwierzytelnianie Email" src="https://github.com/user-attachments/assets/2f03ad20-9b3a-4345-b128-7ac07f219e6a" />
+
+</div>
+
+---
+
+### 🏠 Ekran Główny
+<div align="center">
+
+<img width="180" height="400" alt="Ekran Główny" src="https://github.com/user-attachments/assets/57488af4-816d-45d5-8d9f-20ac00aa1e9b" />
+
+</div>
+
+---
+
+### 💫 Interfejs Przesuwania
+<div align="center">
+
+<img width="180" height="400" alt="Karta Profilu" src="https://github.com/user-attachments/assets/183fb9d9-f943-49b7-85ab-bbed9b07b30d" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="180" height="400" alt="Kontrolki Przesuwania" src="https://github.com/user-attachments/assets/3cb8e402-9cf4-43ed-9101-4bd100950f72" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="180" height="400" alt="Interfejs Dopasowania" src="https://github.com/user-attachments/assets/9c105ce5-c91b-421b-9f0b-e864bd67e396" />
+
+</div>
+
+---
+
+### 💬 Interfejs Czatowania
+<div align="center">
+
+<img width="180" height="400" alt="Lista Konwersacji" src="https://github.com/user-attachments/assets/4f513404-caf9-4b9c-8ec0-0be391125122" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="180" height="400" alt="Aktywny Czat" src="https://github.com/user-attachments/assets/23a255a2-4492-4299-93f5-e1e5c52a3641" />
+
+</div>
+
+---
+
+### 👤 Zarządzanie Profilami
+<div align="center">
+
+<img width="180" height="400" alt="Ekran Profilu" src="https://github.com/user-attachments/assets/eec79275-35fb-4be7-acdd-cdeefb8e6a0b" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="180" height="400" alt="Edycja Profilu" src="https://github.com/user-attachments/assets/fa0cd86d-7f0a-4644-9add-331f2beca383" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="180" height="400" alt="Preferencje" src="https://github.com/user-attachments/assets/2fdfb926-5280-4224-9f57-25773cfb362a" />
+
+<br><br>
+
+<img width="180" height="400" alt="Preferencje Gamingowe" src="https://github.com/user-attachments/assets/5989de96-4849-4484-90d0-4efca15b1cb9" />
+&nbsp;&nbsp;&nbsp;&nbsp;
+<img width="180" height="400" alt="Menu Profilu" src="https://github.com/user-attachments/assets/79dc6464-eec4-44e8-a8e6-ff69e46827dc" />
+
+</div>
+
+---
+
+## Współpraca
+
+### Wytyczne Deweloperskie
+- Postępuj zgodnie z najlepszymi praktykami TypeScript
+- Utrzymuj wielokrotność użycia komponentów
+- Pisz kompleksowe testy
+- Postępuj zgodnie z ustalonym stylem kodu
+- Aktualizuj dokumentację dla nowych funkcji
+
+### Jakość Kodu
+- Konfiguracja ESLint dla spójności kodu
+- TypeScript dla bezpieczeństwa typów
+- Testowanie komponentów z Jest
+- Zasady responsywnego designu
+
+## Status Projektu
+
+**Aktualna Wersja**: 1.0.0  
+**Status Rozwoju**: Aktywny Rozwój  
+**Wsparcie Platform**: iOS, Android, Web  
+**Docelowa Grupa**: Członkowie społeczności gamingowej poszukujący członków drużyny i relacji
+
+## Licencja
+
+Ten projekt to oprogramowanie własnościowe rozwijane w celach edukacyjnych.
+
+---
+
+**Rozwijane z ❤️ używając React Native i Expo**
+
+</div>
+
+---
+
+<div align="center">
+
+**🌍 Wybierz język / Choose language / Wybierz język**
+
+[![English](https://img.shields.io/badge/🇺🇸%20English-Active-brightgreen?style=for-the-badge)](#english)
+[![Polish](https://img.shields.io/badge/🇵🇱%20Polish-Inactive-lightgrey?style=for-the-badge)](#polish)
+
+</div>
