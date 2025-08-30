@@ -319,7 +319,8 @@ npm run build-production
 &nbsp;&nbsp;&nbsp;&nbsp;
 <img width="180" height="400" alt="Profile Edit" src="https://github.com/user-attachments/assets/fa0cd86d-7f0a-4644-9add-331f2beca383" />
 &nbsp;&nbsp;&nbsp;&nbsp;
-<img width="180" height="400" alt="Preferences" src="https://github.com/user-attachments/assets/2fdfb926-5280-4224-9f57-25773cfb362a" />
+<img width="180" height="400" alt="image" src="https://github.com/user-attachments/assets/9eb44e7e-567a-47c3-a86f-3f2811e7cf22" />
+
 
 <br><br>
 
