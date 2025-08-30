@@ -257,22 +257,28 @@ npm run build-production
 ## Screenshots
 
 ### Authentication Flow
-Here must be image of the sign-in screen showing the TeamUp logo, social login buttons (Google, Apple, Email), and the app's branding elements.
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/666ad42c-1d6c-4145-bfbf-60a0974e1f3e" />
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/2f03ad20-9b3a-4345-b128-7ac07f219e6a" />
 
 ### Home Screen
-Here must be image of the main home screen featuring the neon "Find Teammate" button, the app's gaming-focused design, and the overall aesthetic.
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/57488af4-816d-45d5-8d9f-20ac00aa1e9b" />
 
 ### Swipe Interface
-Here must be image of the swipe screen displaying user profile cards with gaming information, like/dislike buttons, and the card-based matching interface.
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/183fb9d9-f943-49b7-85ab-bbed9b07b30d" />
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/3cb8e402-9cf4-43ed-9101-4bd100950f72" />
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/9c105ce5-c91b-421b-9f0b-e864bd67e396" />
 
 ### Chat Interface
 Here must be image of the chat screen showing conversation list, search functionality, and the messaging interface design.
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/4f513404-caf9-4b9c-8ec0-0be391125122" />
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/23a255a2-4492-4299-93f5-e1e5c52a3641" />
 
 ### Profile Management
-Here must be image of the profile screen displaying user information, edit options, and the comprehensive profile management system.
-
-### Match Celebration
-Here must be image of the match overlay screen showing the celebration animation when two users match successfully.
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/eec79275-35fb-4be7-acdd-cdeefb8e6a0b" />
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/fa0cd86d-7f0a-4644-9add-331f2beca383" />
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/2fdfb926-5280-4224-9b57-25773cfb362a" />
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/5989de96-4849-4484-90d0-4efca15b1cb9" />
+<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/79dc6464-eec4-44e8-a8e6-ff69e46827dc" />
 
 ## Contributing
 
