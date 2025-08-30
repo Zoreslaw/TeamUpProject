@@ -256,29 +256,81 @@ npm run build-production
 
 ## Screenshots
 
-### Authentication Flow
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/666ad42c-1d6c-4145-bfbf-60a0974e1f3e" />
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/2f03ad20-9b3a-4345-b128-7ac07f219e6a" />
+---
 
-### Home Screen
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/57488af4-816d-45d5-8d9f-20ac00aa1e9b" />
+### 🔐 Authentication Flow
+<div align="center">
 
-### Swipe Interface
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/183fb9d9-f943-49b7-85ab-bbed9b07b30d" />
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/3cb8e402-9cf4-43ed-9101-4bd100950f72" />
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/9c105ce5-c91b-421b-9f0b-e864bd67e396" />
+**Sign-In Screen**  
+<img width="300" height="667" alt="Sign-In Screen" src="https://github.com/user-attachments/assets/666ad42c-1d6c-4145-bfbf-60a0974e1f3e" />
 
-### Chat Interface
-Here must be image of the chat screen showing conversation list, search functionality, and the messaging interface design.
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/4f513404-caf9-4b9c-8ec0-0be391125122" />
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/23a255a2-4492-4299-93f5-e1e5c52a3641" />
+**Email Authentication**  
+<img width="300" height="667" alt="Email Sign-In" src="https://github.com/user-attachments/assets/2f03ad20-9b3a-4345-b128-7ac07f219e6a" />
 
-### Profile Management
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/eec79275-35fb-4be7-acdd-cdeefb8e6a0b" />
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/fa0cd86d-7f0a-4644-9add-331f2beca383" />
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/2fdfb926-5280-4224-9b57-25773cfb362a" />
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/5989de96-4849-4484-90d0-4efca15b1cb9" />
-<img width="576" height="1280" alt="image" src="https://github.com/user-attachments/assets/79dc6464-eec4-44e8-a8e6-ff69e46827dc" />
+</div>
+
+---
+
+### 🏠 Home Screen
+<div align="center">
+
+**Main Home Interface**  
+<img width="300" height="667" alt="Home Screen" src="https://github.com/user-attachments/assets/57488af4-816d-45d5-8d9f-20ac00aa1e9b" />
+
+</div>
+
+---
+
+### 💫 Swipe Interface
+<div align="center">
+
+**User Profile Card**  
+<img width="300" height="667" alt="Swipe Card" src="https://github.com/user-attachments/assets/183fb9d9-f943-49b7-85ab-bbed9b07b30d" />
+
+**Swipe Controls**  
+<img width="300" height="667" alt="Swipe Controls" src="https://github.com/user-attachments/assets/3cb8e402-9cf4-43ed-9101-4bd100950f72" />
+
+**Match Interface**  
+<img width="300" height="667" alt="Match Screen" src="https://github.com/user-attachments/assets/9c105ce5-c91b-421b-9f0b-e864bd67e396" />
+
+</div>
+
+---
+
+### 💬 Chat Interface
+<div align="center">
+
+**Conversation List**  
+<img width="300" height="667" alt="Chat List" src="https://github.com/user-attachments/assets/4f513404-caf9-4b9c-8ec0-0be391125122" />
+
+**Active Chat**  
+<img width="300" height="667" alt="Active Chat" src="https://github.com/user-attachments/assets/23a255a2-4492-4299-93f5-e1e5c52a3641" />
+
+</div>
+
+---
+
+### 👤 Profile Management
+<div align="center">
+
+**Profile Overview**  
+<img width="300" height="667" alt="Profile Screen" src="https://github.com/user-attachments/assets/eec79275-35fb-4be7-acdd-cdeefb8e6a0b" />
+
+**Profile Editing**  
+<img width="300" height="667" alt="Profile Edit" src="https://github.com/user-attachments/assets/fa0cd86d-7f0a-4644-9add-331f2beca383" />
+
+**Preferences Settings**  
+<img width="300" height="667" alt="Preferences" src="https://github.com/user-attachments/assets/2fdfb926-5280-4224-9f57-25773cfb362a" />
+
+**Gaming Preferences**  
+<img width="300" height="667" alt="Gaming Settings" src="https://github.com/user-attachments/assets/5989de96-4849-4484-90d0-4efca15b1cb9" />
+
+**Profile Menu**  
+<img width="300" height="667" alt="Profile Menu" src="https://github.com/user-attachments/assets/79dc6464-eec4-44e8-a8e6-ff69e46827dc" />
+
+</div>
+
+---
 
 ## Contributing
 
@@ -304,7 +356,7 @@ Here must be image of the chat screen showing conversation list, search function
 
 ## License
 
-This project is proprietary software developed for educational and commercial purposes.
+This project is proprietary software developed for educational purposes.
 
 ---
 
