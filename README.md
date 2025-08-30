@@ -536,7 +536,7 @@ Aplikacja opiera się na nowoczesnej architekturze React Native:
 
 ### Wytyczne
 
-- Postępuj zgodnie z najlepszymi praktykami TypeScript
+- Postępowanie zgodnie z najlepszymi praktykami TypeScript
 - Utrzymywanie wielokrotnośći użycia komponentów
 - Pisanie testów dla nowych funkcji
 - Utrzymywanie stylu kodu i dokumentacji
