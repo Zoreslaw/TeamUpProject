@@ -1,7 +1,5 @@
 # TeamUp - Gaming-Focused Dating App
 
----
-
 ## 🇺🇸 English
 
 # TeamUp – Gaming-Focused Dating App
