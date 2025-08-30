@@ -259,6 +259,8 @@ npm run build-production
 ---
 
 ### 🔐 Authentication Flow
+
+
 <div align="center">
 
 <img width="180" height="400" alt="Sign-In Screen" src="https://github.com/user-attachments/assets/666ad42c-1d6c-4145-bfbf-60a0974e1f3e" />
@@ -270,6 +272,8 @@ npm run build-production
 ---
 
 ### 🏠 Home Screen
+
+
 <div align="center">
 
 <img width="180" height="400" alt="Home Screen" src="https://github.com/user-attachments/assets/57488af4-816d-45d5-8d9f-20ac00aa1e9b" />
@@ -279,6 +283,8 @@ npm run build-production
 ---
 
 ### 💫 Swipe Interface
+
+
 <div align="center">
 
 <img width="180" height="400" alt="Swipe Card" src="https://github.com/user-attachments/assets/183fb9d9-f943-49b7-85ab-bbed9b07b30d" />
@@ -292,6 +298,8 @@ npm run build-production
 ---
 
 ### 💬 Chat Interface
+
+
 <div align="center">
 
 <img width="180" height="400" alt="Chat List" src="https://github.com/user-attachments/assets/4f513404-caf9-4b9c-8ec0-0be391125122" />
@@ -303,6 +311,8 @@ npm run build-production
 ---
 
 ### 👤 Profile Management
+
+
 <div align="center">
 
 <img width="180" height="400" alt="Profile Screen" src="https://github.com/user-attachments/assets/eec79275-35fb-4be7-acdd-cdeefb8e6a0b" />
