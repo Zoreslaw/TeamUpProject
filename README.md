@@ -261,11 +261,9 @@ npm run build-production
 ### 🔐 Authentication Flow
 <div align="center">
 
-<img width="200" height="444" alt="Sign-In Screen" src="https://github.com/user-attachments/assets/666ad42c-1d6c-4145-bfbf-60a0974e1f3e" />
-
+<img width="180" height="400" alt="Sign-In Screen" src="https://github.com/user-attachments/assets/666ad42c-1d6c-4145-bfbf-60a0974e1f3e" />
 &nbsp;&nbsp;&nbsp;&nbsp;
-
-<img width="200" height="444" alt="Email Sign-In" src="https://github.com/user-attachments/assets/2f03ad20-9b3a-4345-b128-7ac07f219e6a" />
+<img width="180" height="400" alt="Email Sign-In" src="https://github.com/user-attachments/assets/2f03ad20-9b3a-4345-b128-7ac07f219e6a" />
 
 </div>
 
@@ -274,7 +272,7 @@ npm run build-production
 ### 🏠 Home Screen
 <div align="center">
 
-<img width="200" height="444" alt="Home Screen" src="https://github.com/user-attachments/assets/57488af4-816d-45d5-8d9f-20ac00aa1e9b" />
+<img width="180" height="400" alt="Home Screen" src="https://github.com/user-attachments/assets/57488af4-816d-45d5-8d9f-20ac00aa1e9b" />
 
 </div>
 
@@ -283,15 +281,11 @@ npm run build-production
 ### 💫 Swipe Interface
 <div align="center">
 
-<img width="200" height="444" alt="Swipe Card" src="https://github.com/user-attachments/assets/183fb9d9-f943-49b7-85ab-bbed9b07b30d" />
-
+<img width="180" height="400" alt="Swipe Card" src="https://github.com/user-attachments/assets/183fb9d9-f943-49b7-85ab-bbed9b07b30d" />
 &nbsp;&nbsp;&nbsp;&nbsp;
-
-<img width="200" height="444" alt="Swipe Controls" src="https://github.com/user-attachments/assets/3cb8e402-9cf4-43ed-9101-4bd100950f72" />
-
+<img width="180" height="400" alt="Swipe Controls" src="https://github.com/user-attachments/assets/3cb8e402-9cf4-43ed-9101-4bd100950f72" />
 &nbsp;&nbsp;&nbsp;&nbsp;
-
-<img width="200" height="444" alt="Match Screen" src="https://github.com/user-attachments/assets/9c105ce5-c91b-421b-9f0b-e864bd67e396" />
+<img width="180" height="400" alt="Match Screen" src="https://github.com/user-attachments/assets/9c105ce5-c91b-421b-9f0b-e864bd67e396" />
 
 </div>
 
@@ -300,11 +294,9 @@ npm run build-production
 ### 💬 Chat Interface
 <div align="center">
 
-<img width="200" height="444" alt="Chat List" src="https://github.com/user-attachments/assets/4f513404-caf9-4b9c-8ec0-0be391125122" />
-
+<img width="180" height="400" alt="Chat List" src="https://github.com/user-attachments/assets/4f513404-caf9-4b9c-8ec0-0be391125122" />
 &nbsp;&nbsp;&nbsp;&nbsp;
-
-<img width="200" height="444" alt="Active Chat" src="https://github.com/user-attachments/assets/23a255a2-4492-4299-93f5-e1e5c52a3641" />
+<img width="180" height="400" alt="Active Chat" src="https://github.com/user-attachments/assets/23a255a2-4492-4299-93f5-e1e5c52a3641" />
 
 </div>
 
@@ -313,23 +305,17 @@ npm run build-production
 ### 👤 Profile Management
 <div align="center">
 
-<img width="200" height="444" alt="Profile Screen" src="https://github.com/user-attachments/assets/eec79275-35fb-4be7-acdd-cdeefb8e6a0b" />
-
+<img width="180" height="400" alt="Profile Screen" src="https://github.com/user-attachments/assets/eec79275-35fb-4be7-acdd-cdeefb8e6a0b" />
 &nbsp;&nbsp;&nbsp;&nbsp;
-
-<img width="200" height="444" alt="Profile Edit" src="https://github.com/user-attachments/assets/fa0cd86d-7f0a-4644-9add-331f2beca383" />
-
+<img width="180" height="400" alt="Profile Edit" src="https://github.com/user-attachments/assets/fa0cd86d-7f0a-4644-9add-331f2beca383" />
 &nbsp;&nbsp;&nbsp;&nbsp;
+<img width="180" height="400" alt="Preferences" src="https://github.com/user-attachments/assets/2fdfb926-5280-4224-9f57-25773cfb362a" />
 
-<img width="200" height="444" alt="Preferences" src="https://github.com/user-attachments/assets/2fdfb926-5280-4224-9f57-25773cfb362a" />
+<br><br>
 
+<img width="180" height="400" alt="Gaming Settings" src="https://github.com/user-attachments/assets/5989de96-4849-4484-90d0-4efca15b1cb9" />
 &nbsp;&nbsp;&nbsp;&nbsp;
-
-<img width="200" height="444" alt="Gaming Settings" src="https://github.com/user-attachments/assets/5989de96-4849-4484-90d0-4efca15b1cb9" />
-
-&nbsp;&nbsp;&nbsp;&nbsp;
-
-<img width="200" height="444" alt="Profile Menu" src="https://github.com/user-attachments/assets/79dc6464-eec4-44e8-a8e6-ff69e46827dc" />
+<img width="180" height="400" alt="Profile Menu" src="https://github.com/user-attachments/assets/79dc6464-eec4-44e8-a8e6-ff69e46827dc" />
 
 </div>
 
