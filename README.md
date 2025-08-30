@@ -2,14 +2,13 @@
 
 <div align="center">
 
-[![English](https://img.shields.io/badge/🇺🇸%20English-Active-brightgreen?style=for-the-badge)](#english)
-[![Polish](https://img.shields.io/badge/🇵🇱%20Polish-Inactive-lightgrey?style=for-the-badge)](#polish)
+[🇺🇸 English](#english) | [🇵🇱 Polski](#polish)
 
 </div>
 
 ---
 
-<div id="english">
+## 🇺🇸 English
 
 # TeamUp - Gaming-Focused Dating App
 
@@ -364,11 +363,9 @@ This project is proprietary software developed for educational purposes.
 
 **Developed with ❤️ using React Native and Expo**
 
-</div>
-
 ---
 
-<div id="polish">
+## 🇵🇱 Polski
 
 # TeamUp - Aplikacja Randkowa Skupiona na Graczach
 
@@ -723,15 +720,12 @@ Ten projekt to oprogramowanie własnościowe rozwijane w celach edukacyjnych.
 
 **Rozwijane z ❤️ używając React Native i Expo**
 
-</div>
-
 ---
 
 <div align="center">
 
 **🌍 Wybierz język / Choose language / Wybierz język**
 
-[![English](https://img.shields.io/badge/🇺🇸%20English-Active-brightgreen?style=for-the-badge)](#english)
-[![Polish](https://img.shields.io/badge/🇵🇱%20Polish-Inactive-lightgrey?style=for-the-badge)](#polish)
+[🇺🇸 English](#english) | [🇵🇱 Polski](#polish)
 
 </div>
